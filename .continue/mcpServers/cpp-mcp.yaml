@@ -1,0 +1,15 @@
+name: cpp-mcp
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: cpp
+    command: "/Users/martinnygren/go/bin/mcp-language-server"
+    args:
+      - "-workspace"
+      - "/Users/martinnygren/Source/C++/dds"
+      - "-lsp"
+      - "/usr/bin/clangd"
+      - "--"
+      -  "--compile-commands-dir=/Users/martinnygren/Source/C++/dds/"
+    env: {}
+    autoStart: true
