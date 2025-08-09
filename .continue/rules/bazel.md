@@ -1,4 +1,5 @@
 ---
+name: Bazel Build System Rules and MCP Integration
 languages: ["bazel", "starlark", "build", "bazelbuild"]
 ---
 

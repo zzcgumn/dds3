@@ -1,3 +1,9 @@
+
+---
+name: Open Pull Request
+alwaysApply: true
+---
+
 # Open Pull Request
 
 Use the `github` MCP server to open a pull request for the current branch.

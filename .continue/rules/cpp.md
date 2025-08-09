@@ -1,4 +1,5 @@
 ---
+name: C++ Development Rules with clangd MCP
 languages: ["cpp", "c++", "h", "hpp", "cc"]
 ---
 

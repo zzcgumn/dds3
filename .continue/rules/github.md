@@ -1,3 +1,7 @@
+---
+name: Github Workflow Rules
+---
+
 # GitHub Workflow Rules
 
 ## Overview
