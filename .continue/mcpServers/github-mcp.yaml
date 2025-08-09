@@ -1,0 +1,20 @@
+
+name: github-mcp
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: github
+    schema: v1
+    version: 0.0.1
+    command: mcp-github
+    args: []
+    env:
+      GITHUB_TOKEN: "{{ env.CONTINUE_DEV_GITHUB_TOKEN }}"
+    cwd: "{{ workspaceRoot }}"
+    connectionTimeout: 30000
+    description: >
+      Local GitHub MCP server used to create branches, push commits and open PRs.
+    config:
+      defaultRepo: "zzgumn/dds"
+      defaultBaseBranch: "mn_main"
+      prTitlePrefix: "[AUTO-PR]"
