@@ -1,0 +1,14 @@
+name: git-mcp
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: git
+    command: "/opt/homebrew/bin/git-mcp-server"
+    connectionTimeout: 10000
+    cwd: "/Users/martinnygren/Source/C++/dds"
+    env:
+      MCP_LOG_LEVEL: "info"
+      GIT_SIGN_COMMITS: "false"
+    autoStart: true
+    config:
+      defaultBranch: "mn_main"
