@@ -1,6 +1,7 @@
 ---
 name: Bazel Build System Rules and MCP Integration
 languages: ["bazel", "starlark", "build", "bazelbuild"]
+alwaysApply: false
 ---
 
 # Bazel Build System Rules and MCP Integration

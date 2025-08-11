@@ -1,7 +1,7 @@
 
 ---
 name: Open Pull Request
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Open Pull Request

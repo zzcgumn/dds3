@@ -1,5 +1,6 @@
 ---
 name: Github Workflow Rules
+alwaysApply: false
 ---
 
 # GitHub Workflow Rules

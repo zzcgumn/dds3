@@ -1,6 +1,7 @@
 ---
 name: C++ Development Rules with clangd MCP
 languages: ["cpp", "c++", "h", "hpp", "cc"]
+alwaysApply: false
 ---
 
 # C++ Development Rules with clangd MCP Integration
