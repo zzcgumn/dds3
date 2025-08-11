@@ -40,13 +40,17 @@ You have access to an MCP server named **`github`** (running `mcp-github`) which
 ---
 
 ## Tooling
-- Use the **`github`** MCP server to:
-  - Create branches
-  - Commit and push changes
-  - Open pull requests
-  - Check PR status
-- This server is configured in `.continue/mcpServers/github-mcp.yaml`  
-  It uses an access token stored in your local environment (e.g., `.zshrc`).
+  - Use the **`github`** MCP server, which is configured in `.continue/mcpServers/github-mcp.yaml`, to:
+    - Create branches
+    - Commit and push changes
+    - Open pull requests
+    - Check PR status
+  -Use the ** `git` ** MCP server, which is configured in `.continue/mcpServers/git-mcp.yaml`, to:
+   - Commit and push changes
+   - Check the current branch
+   - Check the current repo
+   - Check the repo owner
+   - Compare changes with the base branch
 
 ---
 
