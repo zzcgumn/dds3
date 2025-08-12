@@ -13,3 +13,4 @@ mcpServers:
       -  "--compile-commands-dir=/Users/martinnygren/Source/C++/dds/"
     env: {}
     autoStart: true
+    
