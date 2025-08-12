@@ -1,17 +1,13 @@
 ---
-name: Github Workflow Rules
+name: GitHub Workflow Rules
 alwaysApply: false
 ---
 
 # GitHub Workflow Rules
 
 ## Overview
-This project uses GitHub as its primary version control and collaboration platform.  
-All code contributions, fixes, and features must go through a pull request (PR) workflow.
-
+This project uses GitHub as its primary version control and collaboration platform. All code contributions, fixes, and features must go through a pull request (PR) workflow.
 You have access to an MCP server named **`github`** (running `mcp-github`) which can create branches, push commits, and open PRs directly from the Continue.dev environment.
-
----
 
 ## Branching Strategy
 - **Default branch:** `mn_main`
@@ -22,8 +18,6 @@ You have access to an MCP server named **`github`** (running `mcp-github`) which
   - `chore/<short-description>` for maintenance
   - `refactor/<short-description>` for refactoring
 - Branch names must be lowercase and use hyphens instead of spaces.
-
----
 
 ## Pull Request Rules
 1. **Always** open a PR for changes — no direct commits to `mn_main`.
@@ -37,23 +31,12 @@ You have access to an MCP server named **`github`** (running `mcp-github`) which
    - Any lint/format checks
 5. Small PRs are preferred — keep them focused on one logical change.
 
----
-
 ## Tooling
-  - Use the **`github`** MCP server, which is configured in `.continue/mcpServers/github-mcp.yaml`, to:
+- Use the **`github`** MCP server (configured in `.continue/mcpServers/github-mcp.yaml`) to:
     - Create branches
     - Commit and push changes
     - Open pull requests
     - Check PR status
-  -Use the ** `git` ** MCP server, which is configured in `.continue/mcpServers/git-mcp.yaml`, to:
-   - Commit and push changes
-   - Check the current branch
-   - Check the current repo
-   - Check the repo owner
-   - Compare changes with the base branch
-
----
-
 ## Example MCP Server Commands
 You can instruct Continue.dev to:
 - `Use the github MCP server to create a new branch called fix/memory-leak`
@@ -61,16 +44,13 @@ You can instruct Continue.dev to:
 - `List open pull requests for this repo`
 - `Merge PR #45 after approval`
 
----
-
 ## Automation
 - CI/CD runs automatically for all PRs.
 - Approved PRs can be merged by maintainers.
 - Use **squash merging** to keep history clean.
 
----
-
 ## Notes for Continue.dev
 - You are allowed to automate branch creation and PR submission using the `github` MCP server.
 - If multiple PRs are required, ensure each is isolated to its own branch.
 - You may request human review before merging.
+```
