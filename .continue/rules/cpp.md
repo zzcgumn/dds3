@@ -1,83 +1,69 @@
 ---
-name: C++ Development Rules with clangd MCP
+name: C++ Development Rules (clangd MCP)
 languages: ["cpp", "c++", "h", "hpp", "cc"]
 alwaysApply: false
 ---
 
 # C++ Development Rules with clangd MCP Integration
 
-## MCP Server Configuration
-- **Server Name**: `cpp` (defined in `.continue/mcpServers/cpp-mcp.yaml`)
-- **Type**: clangd integration
-- **Status**: Should be running and available for all C++ development tasks
+## MCP Server
+- **Name:** `cpp` (defined in `.continue/mcpServers/cpp-mcp.yaml`)
+- **Type:** clangd integration
+- **Status:** Must be running for all C++ work
 
-## Tooling Awareness
-- **clangd MCP server** is running and available to Continue.
-- **Always prefer clangd MCP commands** over static analysis or assumptions about code.
-- Capabilities include:
-  - Real-time diagnostics and fix suggestions
-  - Code completion and signature help
-  - Go-to-definition and go-to-declaration
-  - Find-references and find-implementations
-  - Rename-symbol (with cross-file updates)
-  - Organize includes and remove unused includes
-  - clang-tidy checks based on `.clang-tidy` config
-  - Hover information for types and documentation
+## Tooling
+| Feature | What it does | When to use |
+|---------|--------------|-------------|
+| Diagnostics | Real-time error reporting | Before building |
+| Fix suggestions | Auto-apply clangd fixes when diagnostics appear |  |
+| Code completion | Signature help | While typing |
+| Go-to-definition / references | Navigate code during refactoring |  |
+| Rename-symbol | Cross-file rename | Renaming identifiers |
+| Organize-includes | Remove unused includes  |  Before committing |
+| clang-tidy | Style & safety checks in the CI pipeline |  Before committing |
 
-## MCP Server Integration Best Practices
-- If clangd MCP commands fail, mention this to the user and fall back to standard analysis
-- When diagnostics show errors, prioritize fixing compilation issues before style issues
-- Use clangd's fix suggestions when available rather than generating custom solutions
+> **Tip:** If a clangd command fails, fall back to manual analysis and report the issue.
 
-## Workflow Integration
-When working with code:
-- **Before making changes**: Run diagnostics to understand current issues
-- **During refactoring**: Use find-references to identify all usage sites
-- **After renaming**: Always use rename-symbol tool rather than manual find-replace
-- **Before suggesting fixes**: Use go-to-definition to understand the complete context
-- **After code changes**: Run diagnostics again to verify fixes worked
-- **For include management**: Use organize-includes rather than manual sorting
-- **When unsure about APIs**: Use hover or go-to-definition for documentation
+## Workflow
+1. **Diagnostics** – run first to catch compile errors before any changes.
+2. **Refactor** – use *find-references* to locate all usages during refactoring.
+3. **Rename** – use *rename-symbol* for safe cross-file changes when renaming identifiers.
+4. **Include management** – run *organize-includes* before committing to remove unused includes.
+5. **Post-change diagnostics** – verify no new errors after code changes.
 
-## General
-- Use **C++20** standard for all code.
-- Follow RAII principles for resource management.
-- Prefer smart pointers (`std::unique_ptr`, `std::shared_ptr`) instead of raw pointers.
-- Maintain **const correctness** consistently.
-- Avoid `using namespace` in headers.
-
-## Code Style
-- Follow the **Google C++ Style Guide** (https://google.github.io/styleguide/cppguide.html).
-- Use range-based for loops and `<algorithm>` where possible.
-- Use strongly typed enums (`enum class`) over unscoped enums.
-- Avoid macros except for header guards (or `#pragma once`).
-- Keep functions short and focused; extract helpers if logic is too long.
-- Use `snake_case` for variables/functions, `PascalCase` for classes/types.
-
+## Coding Guidelines
+- **Standard:** C++20 (`-std=c++20`)
+- **RAII** – manage resources via destructors.
+- **Smart pointers** – prefer `std::unique_ptr` / `std::shared_ptr`.
+- **Const-correctness** – mark data/functions const where possible.
+- **No `using namespace` in headers.**
+- **Google C++ Style Guide** – follow naming, formatting, and layout.
+- **Enums** – use `enum class`.
+- **Functions** – keep short; extract helpers if > 20 lines.
+- **Variables** – snake_case; classes – PascalCase.
+- **Header guards** – `#pragma once` or traditional guards.
 ## Safety
-- Initialize all variables before use.
-- Avoid undefined behavior; check bounds on all container accesses.
-- Prefer exceptions for error handling; avoid error codes where exceptions are practical.
-- Ensure thread safety when working with shared state.
-- Use `std::optional` for values that may not exist instead of nullable pointers.
-- Prefer `constexpr` for compile-time constants.
-
+- Initialize all variables.
+- Check bounds on container access.
+- Prefer exceptions over error codes when appropriate.
+- Use `std::optional` for nullable values.
+- Mark compile-time constants with `constexpr`.
 ## Documentation
-- Document all public classes and functions with **Doxygen-style** comments.
-- Explain the reasoning behind non-obvious implementation choices.
-- Include usage examples for complex APIs
+- Public APIs: Doxygen-style comments.
+- Explain non-obvious design choices.
+- Provide usage examples for complex interfaces.
 
 ## Testing
-- Write unit tests using **GoogleTest** for new code.
-- Test normal cases, edge cases, and failure scenarios.
+- Use GoogleTest.
+- Cover normal, edge, and failure cases.
+- Keep tests fast and focused.
 
 ## Build System
-- Use **Bazel** as the build system for all projects.
-- Generate appropriate `BUILD` files and maintain `WORKSPACE` configuration.
-- Use **Clang** as the compiler with appropriate flags.
-- Configure builds with `-std=c++20 -Wall -Wextra -Werror`.
-
+- **Bazel** is the sole build system.
+- Generate `BUILD` files automatically.
+- Compiler flags: `-Wall -Wextra -Werror`.
+- Ensure `WORKSPACE` is up-to-date.
 ---
 
-**Reminder to Continue:**  
-When generating or editing C++ code, apply these rules automatically, and explain changes briefly if they improve clarity, safety, or performance.
+**Reminder:** All changes should be reviewed via a pull request. Use the `github` MCP server to create remote branches and open PRs.
+```
