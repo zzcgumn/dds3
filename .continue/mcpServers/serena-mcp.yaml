@@ -1,0 +1,15 @@
+name: serena-mcp
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: serena
+    command: "/opt/homebrew/Caskroom/miniconda/base/bin/uv"
+    args:
+      - "run"
+      - "--directory"
+      - "/Users/martinnygren/Source/Python/serena"
+      - "serena"
+      - "start-mcp-server"
+    cwd: "/Users/martinnygren/Source/C++/dds"
+    env: {}
+    autoStart: true
