@@ -32,14 +32,18 @@ alwaysApply: false
     <convention type="refactor" format="refactor/&lt;short-description&gt;" />
   </namingconventions>
   <requirement>Branch names must be lowercase and use hyphens instead of spaces</requirement>
+  <requirement>All feature/fix/chore/refactor branches must be created from mn_main</requirement>
+  <requirement>All pull requests must target mn_main as the base branch</requirement>
 </branchingstrategy>
 
 <pullrequestrules>
   <rule name="Always use PRs" description="Always open a PR for changes — no direct commits to mn_main" />
+  <rule name="Base branch" description="All PRs must target mn_main branch (not develop or other branches)" />
   <requiredelements>
     <element>Clear, descriptive title</element>
     <element>Concise but informative description</element>
     <element>At least one assigned reviewer</element>
+    <element>Correct base branch (mn_main)</element>
   </requiredelements>
   <qualitygates>
     <gate>CI build must pass</gate>
@@ -49,6 +53,7 @@ alwaysApply: false
   <bestpractices>
     <practice>Keep PRs small and focused</practice>
     <practice>Use squash merging to maintain clean history</practice>
+    <practice>Verify base branch is mn_main before creating PR</practice>
   </bestpractices>
 </pullrequestrules>
 
@@ -60,10 +65,11 @@ alwaysApply: false
 </tooling>
 
 <mcpservercommands>
-  <command name="Create branch" syntax="github create-branch fix/memory-leak" description="Create a new branch" />
-  <command name="Push and PR" syntax="github push-and-pr 'Fix memory leak in cache manager'" description="Push changes and open PR" />
+  <command name="Create branch" syntax="github create-branch fix/memory-leak" description="Create a new branch from mn_main" />
+  <command name="Push and PR" syntax="github push-and-pr 'Fix memory leak in cache manager'" description="Push changes and open PR targeting mn_main" />
   <command name="List PRs" syntax="github list-prs" description="Check PR status" />
   <command name="Merge PR" syntax="github merge-pr 45" description="Merge approved PR" />
+  <command name="Check base branch" syntax="gh pr view --json baseRefName" description="Verify PR targets mn_main" />
 </mcpservercommands>
 
 <automation>
