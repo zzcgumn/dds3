@@ -7,7 +7,7 @@ alwaysApply: false
 # Bazel Build System Rules (MCP-Integrated)
 
 ## MCP Server
-- **Name:** `bazel` (see `.continue/mcpServers/bazel-mcp.yaml`)
+- **Name:** `bazel` (see `~/.cursor/mcp.json` → `bazel`)
 - **Type:** `mcp-bazel`
 - **Capabilities:**
   - Parse & validate BUILD/.bzl files

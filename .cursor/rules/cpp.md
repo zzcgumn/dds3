@@ -7,7 +7,7 @@ alwaysApply: true
 # C++ Development Rules with clangd MCP Integration
 
 ## MCP Server
-- **Name:** `cpp` (defined in `.continue/mcpServers/cpp-mcp.yaml`)
+- **Name:** `cpp` (defined in `~/.cursor/mcp.json` → `cpp`)
 - **Type:** clangd integration
 - **Status:** Must be running for all C++ work
 

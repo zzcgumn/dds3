@@ -7,7 +7,7 @@ alwaysApply: false
 # Git Commands (MCP‑Integrated)
 
 ## MCP Server
-- **Name:** `git` (see `.continue/mcpServers/git-mcp.yaml`)  
+- **Name:** `git` (see `~/.cursor/mcp.json` → `git`)  
 - **Type:** `git-mcp`  
 - **Capabilities:**  
   - Commit & push changes  

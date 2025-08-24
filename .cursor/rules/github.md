@@ -32,7 +32,7 @@ You have access to an MCP server named **`github`** (running `mcp-github`) which
 5. Small PRs are preferred — keep them focused on one logical change.
 
 ## Tooling
-- Use the **`github`** MCP server (configured in `.continue/mcpServers/github-mcp.yaml`) to:
+- Use the **`github`** MCP server (configured in `~/.cursor/mcp.json` → `github`) to:
     - Create branches
     - Commit and push changes
     - Open pull requests
