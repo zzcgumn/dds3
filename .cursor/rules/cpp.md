@@ -6,64 +6,77 @@ alwaysApply: true
 
 # C++ Development Rules with clangd MCP Integration
 
-## MCP Server
-- **Name:** `cpp` (defined in `~/.cursor/mcp.json` → `cpp`)
-- **Type:** clangd integration
-- **Status:** Must be running for all C++ work
+<mcpserver name="cpp" type="clangd integration" status="Must be running for all C++ work">
+  <capabilities>
+    <capability>Real-time error reporting</capability>
+    <capability>Auto-apply clangd fixes</capability>
+    <capability>Code completion and signature help</capability>
+    <capability>Go-to-definition and references</capability>
+    <capability>Cross-file rename operations</capability>
+    <capability>Include management and organization</capability>
+    <capability>Style and safety checks</capability>
+  </capabilities>
+</mcpserver>
 
-## Tooling
-| Feature | What it does | When to use |
-|---------|--------------|-------------|
-| Diagnostics | Real-time error reporting | Before building |
-| Fix suggestions | Auto-apply clangd fixes when diagnostics appear |  |
-| Code completion | Signature help | While typing |
-| Go-to-definition / references | Navigate code during refactoring |  |
-| Rename-symbol | Cross-file rename | Renaming identifiers |
-| Organize-includes | Remove unused includes  |  Before committing |
-| clang-tidy | Style & safety checks in the CI pipeline |  Before committing |
+<tooling>
+  <tool name="Diagnostics" purpose="Real-time error reporting" usage="Before building" />
+  <tool name="Fix suggestions" purpose="Auto-apply clangd fixes when diagnostics appear" usage="When errors are detected" />
+  <tool name="Code completion" purpose="Signature help" usage="While typing" />
+  <tool name="Go-to-definition" purpose="Navigate code during refactoring" usage="During code navigation" />
+  <tool name="Rename-symbol" purpose="Cross-file rename" usage="Renaming identifiers" />
+  <tool name="Organize-includes" purpose="Remove unused includes" usage="Before committing" />
+  <tool name="clang-tidy" purpose="Style & safety checks in the CI pipeline" usage="Before committing" />
+</tooling>
 
-> **Tip:** If a clangd command fails, fall back to manual analysis and report the issue.
+<tip>If a clangd command fails, fall back to manual analysis and report the issue.</tip>
 
-## Workflow
-1. **Diagnostics** – run first to catch compile errors before any changes.
-2. **Refactor** – use *find-references* to locate all usages during refactoring.
-3. **Rename** – use *rename-symbol* for safe cross-file changes when renaming identifiers.
-4. **Include management** – run *organize-includes* before committing to remove unused includes.
-5. **Post-change diagnostics** – verify no new errors after code changes.
+<workflow>
+  <step name="Diagnostics" description="Run first to catch compile errors before any changes" />
+  <step name="Refactor" description="Use find-references to locate all usages during refactoring" />
+  <step name="Rename" description="Use rename-symbol for safe cross-file changes when renaming identifiers" />
+  <step name="Include management" description="Run organize-includes before committing to remove unused includes" />
+  <step name="Post-change diagnostics" description="Verify no new errors after code changes" />
+</workflow>
 
-## Coding Guidelines
-- **Standard:** C++20 (`-std=c++20`)
-- **RAII** – manage resources via destructors.
-- **Smart pointers** – prefer `std::unique_ptr` / `std::shared_ptr`.
-- **Const-correctness** – mark data/functions const where possible.
-- **No `using namespace` in headers.**
-- **Google C++ Style Guide** – follow naming, formatting, and layout.
-- **Enums** – use `enum class`.
-- **Functions** – keep short; extract helpers if > 20 lines.
-- **Variables** – snake_case; classes – PascalCase.
-- **Header guards** – `#pragma once` or traditional guards.
-## Safety
-- Initialize all variables.
-- Check bounds on container access.
-- Prefer exceptions over error codes when appropriate.
-- Use `std::optional` for nullable values.
-- Mark compile-time constants with `constexpr`.
-## Documentation
-- Public APIs: Doxygen-style comments.
-- Explain non-obvious design choices.
-- Provide usage examples for complex interfaces.
+<codingguidelines>
+  <standard>C++20 (`-std=c++20`)</standard>
+  <principle name="RAII" description="Manage resources via destructors" />
+  <principle name="Smart pointers" description="Prefer std::unique_ptr / std::shared_ptr" />
+  <principle name="Const-correctness" description="Mark data/functions const where possible" />
+  <principle name="No using namespace" description="No `using namespace` in headers" />
+  <principle name="Google C++ Style Guide" description="Follow naming, formatting, and layout" />
+  <principle name="Enums" description="Use enum class" />
+  <principle name="Functions" description="Keep short; extract helpers if > 20 lines" />
+  <principle name="Variables" description="snake_case; classes – PascalCase" />
+  <principle name="Header guards" description="#pragma once or traditional guards" />
+</codingguidelines>
 
-## Testing
-- Use GoogleTest.
-- Cover normal, edge, and failure cases.
-- Keep tests fast and focused.
+<safety>
+  <rule>Initialize all variables</rule>
+  <rule>Check bounds on container access</rule>
+  <rule>Prefer exceptions over error codes when appropriate</rule>
+  <rule>Use std::optional for nullable values</rule>
+  <rule>Mark compile-time constants with constexpr</rule>
+</safety>
 
-## Build System
-- **Bazel** is the sole build system.
-- Generate `BUILD` files automatically.
-- Compiler flags: `-Wall -Wextra -Werror`.
-- Ensure `WORKSPACE` is up-to-date.
----
+<documentation>
+  <requirement>Public APIs: Doxygen-style comments</requirement>
+  <requirement>Explain non-obvious design choices</requirement>
+  <requirement>Provide usage examples for complex interfaces</requirement>
+</documentation>
 
-**Reminder:** All changes should be reviewed via a pull request. Use the `github` MCP server to create remote branches and open PRs.
+<testing>
+  <framework>GoogleTest</framework>
+  <coverage>Cover normal, edge, and failure cases</coverage>
+  <requirement>Keep tests fast and focused</requirement>
+</testing>
+
+<buildsystem>
+  <system>Bazel is the sole build system</system>
+  <requirement>Generate BUILD files automatically</requirement>
+  <flags>-Wall -Wextra -Werror</flags>
+  <requirement>Ensure WORKSPACE is up-to-date</requirement>
+</buildsystem>
+
+<reminder>All changes should be reviewed via a pull request. Use the `github` MCP server to create remote branches and open PRs.</reminder>
 

@@ -6,80 +6,77 @@ alwaysApply: false
 
 # GitHub Workflow Rules
 
-## MCP Server
-- **Name:** `github` (see `~/.cursor/mcp.json` → `github`)
-- **Type:** `mcp-github`
-- **Capabilities:**
-  - Create branches and push commits
-  - Open and manage pull requests
-  - Check PR status and CI results
-  - Automate GitHub workflow operations
+<mcpserver name="github" type="mcp-github">
+  <capabilities>
+    <capability>Create branches and push commits</capability>
+    <capability>Open and manage pull requests</capability>
+    <capability>Check PR status and CI results</capability>
+    <capability>Automate GitHub workflow operations</capability>
+  </capabilities>
+  <tip>Use the `github` MCP server for all GitHub operations instead of manual git commands and web interface.</tip>
+</mcpserver>
 
-> **Tip:** Use the `github` MCP server for all GitHub operations instead of manual git commands and web interface.
+<workflowguidelines>
+  <rule name="Branch creation" meaning="Always create new branches for changes" importance="Keeps main branch stable and enables parallel work" />
+  <rule name="PR workflow" meaning="All changes must go through PRs" importance="Ensures code review and maintains quality" />
+  <rule name="Small PRs" meaning="Keep changes focused and logical" importance="Easier to review and reduces merge conflicts" />
+  <rule name="CI passing" meaning="All tests must pass before merge" importance="Maintains code quality and prevents regressions" />
+</workflowguidelines>
 
-## Workflow Guidelines
-| Rule     | What it means                       | Why it matters                           |
-|----------|-------------------------------------|-------------------------------------------|
-| Branch creation | Always create new branches for changes | Keeps main branch stable and enables parallel work |
-| PR workflow | All changes must go through PRs | Ensures code review and maintains quality |
-| Small PRs | Keep changes focused and logical | Easier to review and reduces merge conflicts |
-| CI passing | All tests must pass before merge | Maintains code quality and prevents regressions |
+<branchingstrategy>
+  <defaultbranch>mn_main</defaultbranch>
+  <namingconventions>
+    <convention type="feature" format="feature/&lt;short-description&gt;" />
+    <convention type="fix" format="fix/&lt;short-description&gt;" />
+    <convention type="chore" format="chore/&lt;short-description&gt;" />
+    <convention type="refactor" format="refactor/&lt;short-description&gt;" />
+  </namingconventions>
+  <requirement>Branch names must be lowercase and use hyphens instead of spaces</requirement>
+</branchingstrategy>
 
-## Branching Strategy
-- **Default branch:** `mn_main`
-- **Branch naming conventions:**
-  - `feature/<short-description>` for new features
-  - `fix/<short-description>` for bug fixes
-  - `chore/<short-description>` for maintenance
-  - `refactor/<short-description>` for refactoring
-- Branch names must be lowercase and use hyphens instead of spaces
+<pullrequestrules>
+  <rule name="Always use PRs" description="Always open a PR for changes — no direct commits to mn_main" />
+  <requiredelements>
+    <element>Clear, descriptive title</element>
+    <element>Concise but informative description</element>
+    <element>At least one assigned reviewer</element>
+  </requiredelements>
+  <qualitygates>
+    <gate>CI build must pass</gate>
+    <gate>All unit and integration tests must pass</gate>
+    <gate>Lint/format checks must pass</gate>
+  </qualitygates>
+  <bestpractices>
+    <practice>Keep PRs small and focused</practice>
+    <practice>Use squash merging to maintain clean history</practice>
+  </bestpractices>
+</pullrequestrules>
 
-## Pull Request Rules
-1. **Always** open a PR for changes — no direct commits to `mn_main`
-2. **Required elements:**
-   - Clear, descriptive title
-   - Concise but informative description
-   - At least one assigned reviewer
-3. **Quality gates:**
-   - CI build must pass
-   - All unit and integration tests must pass
-   - Lint/format checks must pass
-4. **Best practices:**
-   - Keep PRs small and focused
-   - Use squash merging to maintain clean history
+<tooling>
+  <tool name="Branch creation" purpose="Create new feature/fix branches" usage="Starting new work" />
+  <tool name="PR management" purpose="Open, update, and merge PRs" usage="Code review workflow" />
+  <tool name="CI monitoring" purpose="Check build and test status" usage="Before merging" />
+  <tool name="Automation" purpose="Streamline GitHub operations" usage="Reduce manual steps" />
+</tooling>
 
-## Tooling
-| Feature | What it does | When to use |
-|---------|--------------|-------------|
-| Branch creation | Create new feature/fix branches | Starting new work |
-| PR management | Open, update, and merge PRs | Code review workflow |
-| CI monitoring | Check build and test status | Before merging |
-| Automation | Streamline GitHub operations | Reduce manual steps |
+<mcpservercommands>
+  <command name="Create branch" syntax="github create-branch fix/memory-leak" description="Create a new branch" />
+  <command name="Push and PR" syntax="github push-and-pr 'Fix memory leak in cache manager'" description="Push changes and open PR" />
+  <command name="List PRs" syntax="github list-prs" description="Check PR status" />
+  <command name="Merge PR" syntax="github merge-pr 45" description="Merge approved PR" />
+</mcpservercommands>
 
-## Working with the MCP Server
-```bash
-# Create a new branch
-github create-branch fix/memory-leak
+<automation>
+  <feature>CI/CD runs automatically for all PRs</feature>
+  <feature>Approved PRs can be merged by maintainers</feature>
+  <feature>Use squash merging to keep history clean</feature>
+  <feature>MCP server handles authentication and API calls</feature>
+</automation>
 
-# Push changes and open PR
-github push-and-pr "Fix memory leak in cache manager"
-
-# Check PR status
-github list-prs
-
-# Merge approved PR
-github merge-pr 45
-```
-
-## Automation
-- CI/CD runs automatically for all PRs
-- Approved PRs can be merged by maintainers
-- Use **squash merging** to keep history clean
-- MCP server handles authentication and API calls
-
-## Notes for Continue.dev
-- You are allowed to automate branch creation and PR submission using the `github` MCP server
-- If multiple PRs are required, ensure each is isolated to its own branch
-- You may request human review before merging
-- Use the MCP server for all GitHub operations to maintain consistency
+<notesforcontinuedev>
+  <permission>You are allowed to automate branch creation and PR submission using the github MCP server</permission>
+  <requirement>If multiple PRs are required, ensure each is isolated to its own branch</requirement>
+  <requirement>You may request human review before merging</requirement>
+  <requirement>Use the MCP server for all GitHub operations to maintain consistency</requirement>
+</notesforcontinuedev>
 

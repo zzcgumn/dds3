@@ -6,43 +6,37 @@ alwaysApply: false
 
 # Bazel Build System Rules (MCP-Integrated)
 
-## MCP Server
-- **Name:** `bazel` (see `~/.cursor/mcp.json` → `bazel`)
-- **Type:** `mcp-bazel`
-- **Capabilities:**
-  - Parse & validate BUILD/.bzl files
-  - Build graph analysis
-  - Target query & navigation
-  - Auto-generate build commands
+<mcpserver name="bazel" type="mcp-bazel">
+  <capabilities>
+    <capability>Parse & validate BUILD/.bzl files</capability>
+    <capability>Build graph analysis</capability>
+    <capability>Target query & navigation</capability>
+    <capability>Auto-generate build commands</capability>
+  </capabilities>
+  <tip>Whenever you edit a BUILD or .bzl file, run a `bazel` MCP command first to catch syntax or dependency issues.</tip>
+</mcpserver>
 
-> **Tip:** Whenever you edit a BUILD or .bzl file, run a `bazel` MCP command first to catch syntax or dependency issues.
+<buildguidelines>
+  <rule name="Explicit deps" meaning="List every dependency in `deps = [...]`" importance="Prevents hidden transitive pulls" />
+  <rule name="No wildcards" meaning="Avoid `glob([...])` unless absolutely needed" importance="Keeps target graph deterministic" />
+  <rule name="Target naming" meaning="`<component>_<purpose>_<type>`" importance="Easier to read & search" />
+  <rule name="Idiomatic Starlark" meaning="Prefer built-in rules over custom macros" importance="Reduces maintenance" />
+  <rule name="Consistent formatting" meaning="Follow `.bazelrc` & `.bzlformat`" importance="Keeps codebase uniform" />
+</buildguidelines>
 
-## Build Guidelines
-| Rule     | What it means                       | Why it matters                           |
-|----------|-------------------------------------|-------------------------------------------|
-| Explicit deps | List every dependency in `deps = [...]` | Prevents hidden transitive pulls            |
-| No wildcards | Avoid `glob([...])` unless absolutely needed | Keeps target graph deterministic             |
-| Target naming | `<component>_<purpose>_<type>`       | Easier to read & search                     |
-| Idiomatic Starlark | Prefer built-in rules over custom macros | Reduces maintenance                        |
-| Consistent formatting | Follow `.bazelrc` & `.bzlformat`   | Keeps codebase uniform                      |
-## Best Practices
-- Use `cc_library`, `cc_binary`, `cc_test` for C++ targets.
-- Keep test suites small & fast.
-- Restrict visibility (`visibility = ["//visibility:private"]`) when appropriate.
-- Run `bazel build //...` & `bazel test //...` locally before pushing.
-- Document any non-trivial macros or build logic in comments.
+<bestpractices>
+  <practice>Use `cc_library`, `cc_binary`, `cc_test` for C++ targets</practice>
+  <practice>Keep test suites small & fast</practice>
+  <practice>Restrict visibility (`visibility = ["//visibility:private"]`) when appropriate</practice>
+  <practice>Run `bazel build //...` & `bazel test //...` locally before pushing</practice>
+  <practice>Document any non-trivial macros or build logic in comments</practice>
+</bestpractices>
 
-## Working with the MCP Server
-```bash
-# Validate a BUILD file
-bazel validate //path/to:BUILD
-
-# Query dependencies of a target
-bazel deps //my:target
-
-# Generate a build command for a target
-bazel build //my:target
-```
+<mcpservercommands>
+  <command name="Validate BUILD file" syntax="bazel validate //path/to:BUILD" description="Validate a BUILD file" />
+  <command name="Query dependencies" syntax="bazel deps //my:target" description="Query dependencies of a target" />
+  <command name="Build target" syntax="bazel build //my:target" description="Generate a build command for a target" />
+</mcpservercommands>
 
 
 
