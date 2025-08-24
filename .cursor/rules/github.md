@@ -1,56 +1,85 @@
 ---
 name: GitHub Workflow Rules
+languages: ["github", "git", "pr", "workflow"]
 alwaysApply: false
 ---
 
 # GitHub Workflow Rules
 
-## Overview
-This project uses GitHub as its primary version control and collaboration platform. All code contributions, fixes, and features must go through a pull request (PR) workflow.
-You have access to an MCP server named **`github`** (running `mcp-github`) which can create branches, push commits, and open PRs directly from the Continue.dev environment.
+## MCP Server
+- **Name:** `github` (see `~/.cursor/mcp.json` → `github`)
+- **Type:** `mcp-github`
+- **Capabilities:**
+  - Create branches and push commits
+  - Open and manage pull requests
+  - Check PR status and CI results
+  - Automate GitHub workflow operations
+
+> **Tip:** Use the `github` MCP server for all GitHub operations instead of manual git commands and web interface.
+
+## Workflow Guidelines
+| Rule     | What it means                       | Why it matters                           |
+|----------|-------------------------------------|-------------------------------------------|
+| Branch creation | Always create new branches for changes | Keeps main branch stable and enables parallel work |
+| PR workflow | All changes must go through PRs | Ensures code review and maintains quality |
+| Small PRs | Keep changes focused and logical | Easier to review and reduces merge conflicts |
+| CI passing | All tests must pass before merge | Maintains code quality and prevents regressions |
 
 ## Branching Strategy
 - **Default branch:** `mn_main`
-- Always create a new branch for changes.  
-  Format:  
-  - `feature/<short-description>` for new features  
-  - `fix/<short-description>` for bug fixes  
+- **Branch naming conventions:**
+  - `feature/<short-description>` for new features
+  - `fix/<short-description>` for bug fixes
   - `chore/<short-description>` for maintenance
   - `refactor/<short-description>` for refactoring
-- Branch names must be lowercase and use hyphens instead of spaces.
+- Branch names must be lowercase and use hyphens instead of spaces
 
 ## Pull Request Rules
-1. **Always** open a PR for changes — no direct commits to `mn_main`.
-2. Include:
-   - A clear title describing the change
-   - A concise but informative description
-3. Assign at least **one reviewer** from the core team.
-4. All PRs must pass:
-   - CI build
-   - All unit and integration tests
-   - Any lint/format checks
-5. Small PRs are preferred — keep them focused on one logical change.
+1. **Always** open a PR for changes — no direct commits to `mn_main`
+2. **Required elements:**
+   - Clear, descriptive title
+   - Concise but informative description
+   - At least one assigned reviewer
+3. **Quality gates:**
+   - CI build must pass
+   - All unit and integration tests must pass
+   - Lint/format checks must pass
+4. **Best practices:**
+   - Keep PRs small and focused
+   - Use squash merging to maintain clean history
 
 ## Tooling
-- Use the **`github`** MCP server (configured in `~/.cursor/mcp.json` → `github`) to:
-    - Create branches
-    - Commit and push changes
-    - Open pull requests
-    - Check PR status
-## Example MCP Server Commands
-You can instruct Continue.dev to:
-- `Use the github MCP server to create a new branch called fix/memory-leak`
-- `Push the current branch and open a pull request titled "Fix memory leak in cache manager"`
-- `List open pull requests for this repo`
-- `Merge PR #45 after approval`
+| Feature | What it does | When to use |
+|---------|--------------|-------------|
+| Branch creation | Create new feature/fix branches | Starting new work |
+| PR management | Open, update, and merge PRs | Code review workflow |
+| CI monitoring | Check build and test status | Before merging |
+| Automation | Streamline GitHub operations | Reduce manual steps |
+
+## Working with the MCP Server
+```bash
+# Create a new branch
+github create-branch fix/memory-leak
+
+# Push changes and open PR
+github push-and-pr "Fix memory leak in cache manager"
+
+# Check PR status
+github list-prs
+
+# Merge approved PR
+github merge-pr 45
+```
 
 ## Automation
-- CI/CD runs automatically for all PRs.
-- Approved PRs can be merged by maintainers.
-- Use **squash merging** to keep history clean.
+- CI/CD runs automatically for all PRs
+- Approved PRs can be merged by maintainers
+- Use **squash merging** to keep history clean
+- MCP server handles authentication and API calls
 
 ## Notes for Continue.dev
-- You are allowed to automate branch creation and PR submission using the `github` MCP server.
-- If multiple PRs are required, ensure each is isolated to its own branch.
-- You may request human review before merging.
+- You are allowed to automate branch creation and PR submission using the `github` MCP server
+- If multiple PRs are required, ensure each is isolated to its own branch
+- You may request human review before merging
+- Use the MCP server for all GitHub operations to maintain consistency
 
