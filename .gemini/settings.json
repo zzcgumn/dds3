@@ -1,0 +1,32 @@
+{
+  "mcpServers": [
+    {
+      "name": "cpp",
+      "command": "/Users/martinnygren/go/bin/mcp-language-server",
+      "args": [
+        "-workspace",
+        "/Users/martinnygren/Source/C++/dds",
+        "-lsp",
+        "/usr/bin/clangd",
+        "--",
+        "--compile-commands-dir=/Users/martinnygren/Source/C++/dds/"
+      ],
+      "env": {},
+      "autoStart": true
+    },
+    {
+      "name": "git",
+      "command": "/opt/homebrew/bin/git-mcp-server",
+      "connectionTimeout": 10000,
+      "cwd": "/Users/martinnygren/Source/C++/dds",
+      "env": {
+        "MCP_LOG_LEVEL": "info",
+        "GIT_SIGN_COMMITS": "false"
+      },
+      "autoStart": true,
+      "config": {
+        "defaultBranch": "mn_main"
+      }
+    }
+  ]
+}

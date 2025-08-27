@@ -90,6 +90,7 @@ Create a new module `heuristic_sorting` with:
 - Property tests (determinism and invariants):
   - Re-run randomly generated consistent states, ensure determinism and stability properties.
 - Regression tests:
+  - The tests in `library/tests/regression/heuristic_sorting/` are designed to check that the `Moves` algorithm has not changed. These should be expanded to cover all heuristic paths.
   - Snapshot of historical tricky cases from `doc/heuristic-sorting.md` examples (transcribed into unit vectors).
 - Performance sanity:
   - Micro-benchmark optional; ensure no material slowdown compared to current path.
