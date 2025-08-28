@@ -71,9 +71,10 @@
         "--directory",
         "/Users/martinnygren/Source/Python/serena",
         "serena",
-        "start-mcp-server"
+        "start-mcp-server",
+        "--project",
+        "/Users/martinnygren/Source/C++/dds"
       ],
-      "cwd": "/Users/martinnygren/Source/C++/dds",
       "env": {},
       "autoStart": true
     }
