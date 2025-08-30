@@ -1,67 +1,56 @@
 # Plan for Unit Testing the Heuristic Sorting Component
 
-This plan outlines the steps to create a comprehensive unit test suite for the heuristic card sorting logic, as described in `doc/heuristic-sorting.md`.
+This plan outlines the steps to refactor the heuristic card sorting logic into a standalone, testable component and to create a comprehensive unit test suite for it, based on the specification in `doc/heuristic-sorting.md`.
 
-The core of this task is to isolate the heuristic calculation functions, make them accessible to a test environment, and then write targeted tests that verify the correctness of the weight calculations against the specification.
+The refactoring will be done behind the existing `DDS_USE_NEW_HEURISTIC` flag.
 
 ## Phase 1: Analysis and Scaffolding
 
-1.  **Locate Heuristic Sorting Code:** The logic is not in a dedicated file. I will search the codebase (primarily `library/src/ABsearch.cpp` and `library/src/LaterTricks.cpp`) for key terms and formulas from the documentation (e.g., `suitWeightDelta`, `suitAdd`, `(suit length) * 64)/36`) to identify the exact C++ functions implementing the move weighting algorithm.
+1.  **Locate Heuristic Sorting Code:** Identify the C++ functions in `library/src/Moves.cpp` that implement the move weighting algorithm by searching for key terms from the documentation. (Completed)
 
 2.  **Create New Component Structure:**
     *   Create a new directory: `library/src/heuristic_sorting`.
     *   Create a new build file: `library/src/heuristic_sorting/BUILD.bazel`.
+    *   Create the public API header: `library/src/heuristic_sorting/heuristic_sorting.h`.
+    *   Create a header for internal functions for testing: `library/src/heuristic_sorting/internal.h`.
+    *   Create the implementation file: `library/src/heuristic_sorting/heuristic_sorting.cpp`.
+    *   Create the test file: `library/tests/heuristic_sorting_test.cpp`.
 
-3.  **Create Test Files:**
-    *   Create a new header for internal functions: `library/src/heuristic_sorting/internal.h`. This will expose the previously static functions for testing.
-    *   Create the test implementation file: `library/tests/heuristic_sorting_test.cpp`.
+## Phase 2: API Design and Implementation
 
-## Phase 2: Refactoring for Testability
+1.  **Design Public API:** In `heuristic_sorting.h`, define a public function (e.g., `SortMoves()`). This function will serve as the single entry point for the new component and will take all necessary game state data as arguments via a struct.
 
-1.  **Extract Heuristic Logic:**
-    *   Move the identified heuristic functions from their current location into a new source file: `library/src/heuristic_sorting/heuristic_sorting.cpp`.
-    *   Place the corresponding function declarations into `library/src/heuristic_sorting/internal.h`. If any functions were `static`, this keyword will be removed in the header to allow external linkage for the tests.
+2.  **Extract and Refactor Logic:** Move the `WeightAlloc...` functions from `Moves.cpp` into `heuristic_sorting.cpp`. These will be refactored into standalone, non-class functions. Their declarations will be placed in `internal.h`.
 
-2.  **Update Build System (Bazel):**
-    *   **In `library/src/heuristic_sorting/BUILD.bazel`:**
-        *   Define a `cc_library` named `heuristic_sorting` that compiles `heuristic_sorting.cpp` and exposes `internal.h` in its `hdrs`. This makes the functions available to other components, specifically our test.
-    *   **In `library/tests/BUILD.bazel`:**
-        *   Add a new `cc_test` target named `heuristic_sorting_test`.
-        *   Set `heuristic_sorting_test.cpp` as the source.
-        *   Add a dependency on the `//library/src/heuristic_sorting` library to link against the functions under test.
+3.  **Implement Public API:** The public `SortMoves()` function will internally dispatch to the appropriate private `WeightAlloc...` functions based on the game state.
 
-3.  **Integrate Refactored Code:**
-    *   Modify the original source files (e.g., `ABsearch.cpp`) to `#include "heuristic_sorting/internal.h"` and ensure they call the moved functions correctly.
+## Phase 3: Integration and Build System Configuration
 
-## Phase 3: Test Implementation
+1.  **Update Build System (Bazel):**
+    *   **In `library/src/heuristic_sorting/BUILD.bazel`:** Define a `cc_library` that exposes `heuristic_sorting.h` as its public header.
+    *   **In `library/tests/BUILD.bazel`:** Add a `cc_test` target named `heuristic_sorting_test` that depends on the new `//library/src/heuristic_sorting` library.
+
+2.  **Integrate with `Moves.cpp`:**
+    *   In `Moves.cpp`, include the public `heuristic_sorting/heuristic_sorting.h`.
+    *   Within the `#ifdef DDS_USE_NEW_HEURISTIC` blocks, replace the legacy logic with a call to the new public `SortMoves()` function.
+
+## Phase 4: Test Implementation
 
 1.  **Set Up Test Harness:**
-    *   In `library/tests/heuristic_sorting_test.cpp`, include the new `internal.h`.
-    *   Follow the existing testing conventions found in other files like `dtest.cpp`, which likely involves simple `assert` statements or custom comparison functions.
+    *   In `library/tests/heuristic_sorting_test.cpp`, include `heuristic_sorting/internal.h` to gain access to the individual `WeightAlloc...` functions for granular testing.
+    *   Follow existing project testing conventions.
 
-2.  **Develop Test Cases:**
-    *   Based on `doc/heuristic-sorting.md`, create distinct test functions for each major scenario. Each function will verify the `weight` calculation.
-    *   **Test Scenarios:**
-        *   `TestLeadingHand()`: Covers all logic for when the hand-to-play is the trick leader.
-        *   `TestLHO()`: Covers logic for the Left-Hand Opponent.
-        *   `TestPartner()`: Covers logic for the leader's partner.
-        *   `TestRHO()`: Covers logic for the Right-Hand Opponent.
-        *   `TestDiscardBonus()`: Specifically tests the `suitAdd` calculation for void-in-suit discards.
-    *   For each scenario, multiple sub-tests will be created to cover all branches of the pseudo-code (e.g., winning vs. losing move, trump vs. non-trump, specific card ranks, opponent hand distributions).
+2.  **Develop and Implement Test Cases:**
+    *   Create distinct test functions for each major scenario described in the documentation (`TestLeadingHand`, `TestLHO`, etc.).
+    *   For each scenario, create sub-tests to cover all logical branches.
+    *   In each test, construct the required game state, call the specific `WeightAlloc...` function, and assert that the calculated move weights are correct.
 
-3.  **Implement Tests:**
-    *   For each test, I will manually construct the required game state (hands, current trick, trump, etc.).
-    *   Call the heuristic weight calculation function with this state.
-    *   Use assertions to compare the returned weight with the expected value calculated manually from the pseudo-code in the documentation.
+## Phase 5: Verification
 
-## Phase 4: Verification
+1.  **Run New Unit Tests:** Execute `bazel test //library/tests:heuristic_sorting_test` and ensure all new tests pass.
 
-1.  **Run New Unit Tests:**
-    *   Execute the tests using `bazel test //library/tests:heuristic_sorting_test`.
-    *   Debug and refine the tests and the source code until all tests pass.
+2.  **Run Full Regression Test:** Execute `bazel test //...` to ensure the refactoring has not introduced any regressions.
 
-2.  **Run Full Regression Test:**
-    *   Execute the entire project test suite with `bazel test //...` to ensure the refactoring did not break any existing functionality.
+3.  **Final Build:** Confirm the project builds successfully with `bazel build //...`.
 
-3.  **Final Build:**
-    *   Confirm that the entire project builds successfully with `bazel build //...`.
+4.  **Future Work (Out of Scope for this Plan):** Once the new implementation is fully validated by the tests, the legacy code and the `DDS_USE_NEW_HEURISTIC` flag will be removed.
