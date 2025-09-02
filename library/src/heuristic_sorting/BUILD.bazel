@@ -1,0 +1,37 @@
+load("//:CPPVARIABLES.bzl", "DDS_CPPOPTS", "DDS_LINKOPTS", "DDS_LOCAL_DEFINES")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "heuristic_sorting",
+    srcs = glob(["*.cpp"]),
+    hdrs = glob(["*.h"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//library/src/utility:constants",
+        "//library/src/utility:lookup_tables",
+        "//library/src/data_types:dds_types",
+    ],
+    include_prefix = "heuristic_sorting",
+    copts = DDS_CPPOPTS,
+    linkopts = DDS_LINKOPTS,
+    local_defines = DDS_LOCAL_DEFINES,
+)
+
+cc_library(
+    name = "testable_heuristic_sorting",
+    srcs = glob(["*.cpp", "*.h"]),
+    hdrs = glob(["*.h"]),
+    copts = DDS_CPPOPTS,
+    linkopts = DDS_LINKOPTS,
+    local_defines = DDS_LOCAL_DEFINES,
+    deps = [
+        "//library/src/utility:constants",
+        "//library/src/utility:lookup_tables",
+        "//library/src/data_types:dds_types",
+    ],
+    include_prefix = "heuristic_sorting",
+    visibility = [
+        "//library/tests/heuristic_sorting:__pkg__",
+        "//library/tests/regression/heuristic_sorting:__pkg__",
+    ],
+)

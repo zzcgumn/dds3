@@ -1,0 +1,82 @@
+{
+  "mcpServers": {
+    "cpp": {
+      "name": "cpp",
+      "command": "/Users/martinnygren/go/bin/mcp-language-server",
+      "args": [
+        "-workspace",
+        "/Users/martinnygren/Source/C++/dds",
+        "-lsp",
+        "/usr/bin/clangd",
+        "--",
+        "--compile-commands-dir=/Users/martinnygren/Source/C++/dds/"
+      ],
+      "env": {},
+      "autoStart": true
+    },
+    "git": {
+      "name": "git",
+      "command": "/opt/homebrew/bin/git-mcp-server",
+      "connectionTimeout": 10000,
+      "cwd": "/Users/martinnygren/Source/C++/dds",
+      "env": {
+        "MCP_LOG_LEVEL": "info",
+        "GIT_SIGN_COMMITS": "false"
+      },
+      "autoStart": true,
+      "config": {
+        "defaultBranch": "mn_main"
+      }
+    },
+    "bazel": {
+      "name": "bazel",
+      "command": "/Users/martinnygren/go/bin/mcp-bazel",
+      "args": [
+        "--workspace",
+        "."
+      ],
+      "env": {},
+      "autoStart": true
+    },
+    "github": {
+      "name": "github",
+      "schema": "v1",
+      "version": "0.0.1",
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{{ env.CONTINUE_DEV_GITHUB_TOKEN }}"
+      },
+      "autoStart": true,
+      "connectionTimeout": 30000,
+      "description": "Local GitHub MCP server used to create branches, push commits and open PRs.",
+      "config": {
+        "defaultRepo": "zzcgumn/dds",
+        "defaultBaseBranch": "mn_main",
+        "prTitlePrefix": "[AUTO-PR]"
+      }
+    },
+    "serena": {
+      "name": "serena",
+      "command": "/opt/homebrew/Caskroom/miniconda/base/bin/uv",
+      "args": [
+        "run",
+        "--directory",
+        "/Users/martinnygren/Source/Python/serena",
+        "serena",
+        "start-mcp-server",
+        "--project",
+        "/Users/martinnygren/Source/C++/dds"
+      ],
+      "env": {},
+      "autoStart": true
+    }
+  }
+}

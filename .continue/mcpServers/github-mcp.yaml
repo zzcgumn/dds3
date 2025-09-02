@@ -21,6 +21,6 @@ mcpServers:
     description: >
       Local GitHub MCP server used to create branches, push commits and open PRs.
     config:
-      defaultRepo: "zzgumn/dds"
+      defaultRepo: "zzcgumn/dds"
       defaultBaseBranch: "mn_main"
       prTitlePrefix: "[AUTO-PR]"
