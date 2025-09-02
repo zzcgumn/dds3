@@ -3,6 +3,12 @@
 ## Objective
 Refactor the heuristic sorting logic from `moves.cpp` into the new `heuristic_sorting` library (`library/src/heuristic_sorting`). Maintain the existing compile-time flag to allow switching between the old and new implementations until the new library is fully validated with extensive unit tests.
 
+## Build commands for dtest binary
+1. Original implementation
+   bazel build //library/tests:dtest --define=use_new_heuristic=false
+2. New implementation
+   bazel build //library/tests:dtest --define=use_new_heuristic=true
+
 ## Steps
 
 1. **Review Existing Heuristic Sorting Logic** ✅ COMPLETED
@@ -37,13 +43,22 @@ Refactor the heuristic sorting logic from `moves.cpp` into the new `heuristic_so
    - Fix any discrepancies or bugs.
    - Document any differences or limitations.
 
-8. **Performance Investigation** 🔍 IDENTIFIED ISSUE
-   - **CRITICAL**: New heuristic library shows 31% performance regression
-   - Old implementation: 4.73ms per hand avg
-   - New implementation: 6.21ms per hand avg
-   - Need investigation and optimization
+8. **Performance Investigation** 🔍 IDENTIFIED ISSUE  
+   - **CRITICAL**: New heuristic library shows 2.4x performance regression (4.27ms → 10.42ms per hand)
+   - **ROOT CAUSE UNKNOWN**: Need direct output comparison to identify discrepancies
+   - **IMMEDIATE PRIORITY**: Task 21 - Create direct comparison tests between old and new implementations
 
-9. **Validate Heuristic Sorting Algorithm Correctness** ⚠️ REQUIRED - CRITICAL FOR PERFORMANCE
+9. **🚨 CRITICAL: Direct Output Comparison** ⚠️ **HIGHEST PRIORITY**
+   - **Task 21**: Create comprehensive tests comparing weight outputs between original and new implementations
+   - **Goal**: Identify any weight calculation discrepancies that could explain performance regression
+   - **Status**: 🔄 **IN PROGRESS** - Just created task definition
+   - **Why Critical**: All existing tests only validate new implementation in isolation
+   - **Expected Impact**: Will definitively identify if performance regression is due to:
+     - Incorrect weight calculations leading to poor move ordering
+     - Infrastructure overhead in new implementation
+     - Other systematic differences
+
+10. **Validate Heuristic Sorting Algorithm Correctness** ⚠️ REQUIRED - DEPENDENT ON TASK 21
    - **Poor heuristic sorting will result in the A/B search expanding more nodes. This is a likely cause of the performance degradation**
    - Compare weights calculated with the new and legacy version of heuristic sorting
    - **Sub-tasks for heuristic validation:**
