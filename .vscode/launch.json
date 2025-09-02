@@ -2,6 +2,45 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug dtest (New Heuristic)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": ["--file", "hands/list10.txt"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "build-debug-new-heuristic"
+    },
+    {
+      "name": "Debug dtest (Original Heuristic)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": ["--file", "hands/list10.txt"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "build-debug-original-heuristic"
+    },
+    {
+      "name": "Debug dtest (Small Dataset)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": ["--file", "hands/list2.txt"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "build-debug-new-heuristic"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
