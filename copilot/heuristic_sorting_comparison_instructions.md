@@ -6,7 +6,7 @@ We need a comprehensive set of comparison between the legacy and new version to 
 
 Building with the use_new_heuristic flag set
 ```
-bazel build //... --define=use_new_heuristic=true
+bazel build //... --define=new_heuristic=true
 ```
 enables a function set_use_new_heuristic which can be used to switch between the implementations. 
 
