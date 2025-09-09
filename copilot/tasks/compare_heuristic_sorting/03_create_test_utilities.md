@@ -4,6 +4,9 @@
 Goal
 - Implement small utilities used by tests: move serialization, normalization, and a small logging helper.
 
+Technology
+- Use gmock when appropriate.
+
 Steps
 1. Create `library/tests/heuristic_sorting/test_utils.h/.cpp` exposing:
    - `std::string serialize_move_list(const Moves&)`
