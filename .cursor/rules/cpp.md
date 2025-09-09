@@ -44,7 +44,7 @@ alwaysApply: true
   <principle name="Smart pointers" description="Prefer std::unique_ptr / std::shared_ptr" />
   <principle name="Const-correctness" description="Mark data/functions const where possible" />
   <principle name="No using namespace" description="No `using namespace` in headers" />
-  <principle name="Google C++ Style Guide" description="Follow naming, formatting, and layout" />
+  <principle name="C++ Core Guidelines" description="[Style Guide](https://isocpp.github.io/CppCoreGuidelines/) follow naming, formatting, and layout" />
   <principle name="Enums" description="Use enum class" />
   <principle name="Functions" description="Keep short; extract helpers if > 20 lines" />
   <principle name="Variables" description="snake_case; classes – PascalCase" />
