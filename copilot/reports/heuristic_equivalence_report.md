@@ -1,3 +1,60 @@
+# Heuristic Equivalence Report
+
+Date: 2025-09-09
+
+Summary
+-------
+This report summarizes the work performed to compare the legacy heuristic sorting implementation (in `moves.cpp`) and the new heuristic sorting library (`library/src/heuristic_sorting`). The goal was to provide a repeatable harness, run randomized and deterministic tests, fix initialization issues that caused native crashes, and validate equivalence across a broad set of inputs.
+
+What was implemented
+---------------------
+- A deterministic and randomized test harness under `library/tests/heuristic_sorting/`:
+  - `fuzz_driver.cpp` — randomized, reproducible fuzz driver (env: `FUZZ_COUNT`, `FUZZ_SEED`).
+  - `canonical_cases_test.cpp` — small deterministic cases.
+- Test utilities in `library/tests/heuristic_sorting/test_utils.{h,cpp}`:
+  - `init_rel_and_track(...)` builds `relRanksType[8192]` and populates `trackType`.
+  - Mid-trick simulation: accepts `cardsPlayed` and `playedMoves` and removes played cards from a local `pos` copy.
+  - Refined `lowestWin` computation and helper utilities for deterministic serialization/normalization.
+- Integration and dispatch verified in `library/src/heuristic_sorting/heuristic_sorting.cpp` which calls internal `WeightAlloc*` functions via `HeuristicContext`.
+- Harness now fails the test if any mismatches are found (explicit `FAIL()`), and writes per-case diagnostics to `build/compare-results/` for the first few mismatches/errors.
+
+Validation performed
+--------------------
+- Small verification runs: `FUZZ_COUNT=10` (seed 12345) — PASS.
+- Large randomized validation: `FUZZ_COUNT=5000` (seed 20250911) — PASS.
+  - Fuzz summary produced by the harness: `Fuzz results: total=5000 matched=5000 mismatched=0`.
+  - No diagnostic files were generated in `build/compare-results/` for these runs because there were no mismatches or crashes.
+
+Root-cause and fixes
+--------------------
+- Root cause of the earlier native crash (EXC_BAD_ACCESS in `WeightAllocTrump0`) was uninitialized auxiliary solver structures (`relRanksType[]` and `trackType`) that the heuristics expect to be populated. The tests previously called heuristics without these structures.
+- Fix: added `init_rel_and_track(...)` in test utilities which mirrors the solver initialization (`SetDealTables` style) and ensures rel/track are well-formed even for mid-trick states.
+
+Quality gates and CI recommendations
+----------------------------------
+- The test harness now enforces equivalence at test-time (hard failure when mismatched > 0).
+- Recommended CI additions:
+  - Add a smoke job that runs `fuzz_driver` with `--test_env=FUZZ_COUNT=100` and a fixed seed under `--define=new_heuristic=true` and fails on any mismatches.
+  - Add per-PR optional longer run (e.g., 5000 cases) as a nightly/weekly job for broader coverage.
+
+Remaining work / Next steps
+--------------------------
+1. Add targeted unit tests that directly exercise each internal `WeightAlloc*` function with carefully-crafted `HeuristicContext` instances to guarantee per-function coverage.
+2. Expand canonical deterministic test cases (hand-curated positions that historically expose differences).
+3. Add CI job(s) described above.
+4. If a mismatch is observed, triage flow:
+   - Collect `build/compare-results/fuzz_<ts>_case_<i>_legacy.json` and `_new.json` and inspect the normalized orderings and the first-differing elements.
+   - If necessary, add an instrumented run that fail-fast on first mismatch and prints the full context (pos, rel table, trackType) to help debugging.
+
+Commits & branch
+----------------
+Work performed in branch `chore/check-consistency-heuristic-sorting`. Relevant commits include fixes for `init_rel_and_track`, fuzz-driver improvements, `lowestWin` refinement, and the harness updates.
+
+Conclusions
+-----------
+The harness and test utilities are in place, the major crash was fixed, and a large randomized run (5000 cases) showed no mismatches for the tested seed. The next priority is CI integration and per-function unit tests to guarantee coverage and prevent regressions.
+
+Prepared by: copilot test harness automation
 # Heuristic Sorting Implementation Equivalence Report
 
 ## Executive Summary
