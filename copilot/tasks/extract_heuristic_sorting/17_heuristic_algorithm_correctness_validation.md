@@ -15,13 +15,13 @@ Validate that the new heuristic sorting library produces identical weight calcul
 **Implementation Steps**:
 - [x] Create diagnostic utility to capture weight calculations from both old and new implementations
 - [x] Implement side-by-side weight comparison for identical game states
-- [x] Log weight assignments for all 13 WeightAlloc function variants
+- [x] Log weight assignments for all 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function variants
 - [x] Create test harness that can run same scenarios through both implementations
 - [x] Generate weight difference reports highlighting any discrepancies
 
 **Completed**: Added comprehensive weight comparison tests in `heuristic_sorting_test_simple.cpp`
 - `TestWeightComparison` validates identical scenarios produce identical weights
-- All 13 WeightAlloc functions tested in `TestAllMissingWeightAllocFunctions`
+- All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions tested in `TestAllMissing`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
 - Weight outputs captured and logged for analysis
 
 ### 17.2: Verify Weight Calculation Consistency
@@ -39,7 +39,7 @@ Validate that the new heuristic sorting library produces identical weight calcul
 **Implementation**:
 - [x] Create test data generator for diverse bridge scenarios
 - [x] Implement automated scenario testing framework
-- [x] Compare weight outputs for each WeightAlloc function variant
+- [x] Compare weight outputs for each `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function variant
 - [x] Document any systematic differences or patterns
 
 **Completed**: Comprehensive test coverage implemented across multiple test files:
@@ -110,7 +110,7 @@ Validate that the new heuristic sorting library produces identical weight calcul
 - [x] Regression test suite for continuous validation
 
 **Completed**: Comprehensive diagnostic test suite with:
-- All 13 WeightAlloc functions individually tested
+- All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions individually tested
 - Function dispatch logic validation
 - Move ordering effectiveness verification
 - Edge case and boundary condition testing
@@ -132,7 +132,7 @@ Validate that the new heuristic sorting library produces identical weight calcul
 ## Risk Assessment
 
 ### High-Risk Areas
-1. **Function Dispatch Logic**: Ensure correct WeightAlloc function selection
+1. **Function Dispatch Logic**: Ensure correct `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function selection
 2. **Context Data Assembly**: Verify all required data correctly passed to heuristic functions
 3. **Sorting Behavior**: Confirm MergeSort produces identical move ordering
 4. **Edge Case Handling**: Validate behavior for unusual game states
@@ -164,12 +164,12 @@ Validate that the new heuristic sorting library produces identical weight calcul
 ### Major Achievements ✅
 - **CRITICAL**: Identified and fixed missing MergeSort function causing 31% performance regression
 - **COMPLETE**: Implemented comprehensive unit test coverage (11 test methods across 2 test files)
-- **VALIDATED**: All 13 WeightAlloc functions now individually tested and verified
+- **VALIDATED**: All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions now individually tested and verified
 - **VERIFIED**: Function dispatch logic and move ordering effectiveness confirmed
 - **COVERED**: All game scenarios from heuristic_analysis.md requirements
 
 ### Implementation Quality ✅
-- **Unit Test Coverage**: 100% of WeightAlloc functions (previously only 46%)
+- **Unit Test Coverage**: 100% of `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions (previously only 46%)
 - **Performance Fix**: MergeSort function with proper hardcoded sorting networks (1-13 moves)
 - **Test Validation**: All tests compile and pass successfully
 - **Requirements Compliance**: Complete coverage of heuristic_analysis.md specification
@@ -181,7 +181,7 @@ Sub-task 17.3: Performance validation with search node expansion analysis now th
 Task 17 has achieved major milestones with comprehensive test coverage and resolution of the critical performance issue. The missing MergeSort function was the root cause of the 31% performance regression - moves were being assigned correct weights but never sorted, leading to poor alpha-beta move ordering.
 
 **Key Progress**:
-1. **Complete unit test coverage** - All 13 WeightAlloc functions tested
+1. **Complete unit test coverage** - All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions tested
 2. **Critical bug fix** - MergeSort function properly implemented  
 3. **Requirements validation** - All heuristic_analysis.md scenarios covered
 4. **Quality assurance** - All tests passing with comprehensive edge case coverage

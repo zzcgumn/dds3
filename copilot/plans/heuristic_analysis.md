@@ -8,21 +8,8 @@ The primary functions involved in generating and ordering moves are:
 
 -   **`MoveGen0`**: Generates and weights moves for the leader of a trick.
 -   **`MoveGen123`**: Generates and weights moves for the followers in a trick.
--   **`WeightAlloc...` functions**: This is a family of functions that implement the core heuristic logic for assigning weights to moves. The choice of function depends on the game state (trump or no-trump) and the player's position in the trick.
-    -   `WeightAllocTrump0`
-    -   `WeightAllocNT0`
-    -   `WeightAllocTrumpNotvoid1`
-    -   `WeightAllocNTNotvoid1`
-    -   `WeightAllocTrumpVoid1`
-    -   `WeightAllocNTVoid1`
-    -   `WeightAllocTrumpNotvoid2`
-    -   `WeightAllocNTNotvoid2`
-    -   `WeightAllocTrumpVoid2`
-    -   `WeightAllocNTVoid2`
-    -   `WeightAllocCombinedNotvoid3`
-    -   `WeightAllocTrumpVoid3`
-    -   `WeightAllocNTVoid3`
--   **`MergeSort`**: This function sorts the generated moves based on the weights assigned by the `WeightAlloc...` functions. It uses a hardcoded sorting network for efficiency with a small number of moves.
+-   **Weight allocation functions**: The heuristic is implemented as a set of specialized allocator functions that assign weights based on game state (trump/no-trump, position in trick, void/non-void). These implementations were migrated from the old `Moves` member functions into `library/src/heuristic_sorting/` as standalone functions (declared in `heuristic_sorting/internal.h`). The canonical public API is `CallHeuristic(...)`, which constructs a `HeuristicContext` and dispatches into the appropriate allocator.
+-   **`MergeSort`**: This function sorts the generated moves based on the weights assigned by the ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` functions. It uses a hardcoded sorting network for efficiency with a small number of moves.
 
 ### Key Data Structures
 

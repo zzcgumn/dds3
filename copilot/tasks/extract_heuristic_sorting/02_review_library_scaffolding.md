@@ -5,7 +5,7 @@ Review the existing scaffolding in `library/src/heuristic_sorting` and ensure it
 
 ## Acceptance Criteria
 - [ ] Verify `HeuristicContext` struct contains all necessary data members
-- [ ] Ensure all `WeightAlloc*` function signatures are declared in `internal.h`
+- [ ] Ensure all ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function signatures are declared in `internal.h`
 - [ ] Review the `SortMoves` dispatcher function design
 - [ ] Validate that the library can be properly included and linked
 - [ ] Check if any additional utility functions or data structures are needed

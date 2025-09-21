@@ -4,5 +4,5 @@
 - **Key Actions:**
     - In `library/tests/heuristic_sorting_test.cpp`, include `heuristic_sorting/internal.h` to directly access the internal weighting functions.
     - Create test functions for each major scenario: `TestLeadingHand()`, `TestLHO()`, `TestPartner()`, `TestRHO()`, and `TestDiscardBonus()`.
-    - For each scenario, construct the required game state, call the appropriate `WeightAlloc...` function, and assert that the result matches the expected value from the documentation.
+    - For each scenario, construct the required game state, call the appropriate ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` function, and assert that the result matches the expected value from the documentation.
 - **Deliverable:** A complete `library/tests/heuristic_sorting_test.cpp` file with comprehensive test coverage.

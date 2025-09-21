@@ -1,7 +1,7 @@
 Task 05: Refactor `Moves.cpp` and remove conditional compilation
 
 Summary of changes
-- Removed the `#ifdef DDS_USE_NEW_HEURISTIC` runtime flag in `Moves.cpp` and replaced hot-path branches that called legacy `WeightAlloc*` functions with direct calls to `Moves::CallHeuristic(...)`.
+- Removed the `#ifdef DDS_USE_NEW_HEURISTIC` runtime flag in `Moves.cpp` and replaced hot-path branches that called legacy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions with direct calls to `Moves::CallHeuristic(...)`.
 - Added compatibility stubs for `set_use_new_heuristic(const bool)` and `use_new_heuristic()` in `Moves.cpp`. These are no-ops that return `true` to preserve ABI for existing tests while ensuring the codebase uniformly uses the new heuristic implementation.
 - Updated `Moves.h` to expose the runtime stubs unconditionally (stable prototypes).
 

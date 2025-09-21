@@ -15,7 +15,7 @@ Following the performance analysis and optimization efforts from Task 19, this t
 **Benchmark Categories**:
 
 #### Micro-benchmarks
-- [ ] **Individual WeightAlloc functions**: Isolated performance measurement
+- [ ] **Individual `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions**: Isolated performance measurement
 - [ ] **Context creation overhead**: HeuristicContext assembly timing
 - [ ] **Function dispatch performance**: Switch vs function pointer comparison
 - [ ] **MergeSort efficiency**: Sorting network performance across move counts

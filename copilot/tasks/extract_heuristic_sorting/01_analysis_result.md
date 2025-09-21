@@ -3,29 +3,15 @@
 ## Overview
 This document provides a comprehensive analysis of the heuristic sorting implementation in `moves.cpp` to guide the extraction process.
 
-## WeightAlloc Functions to be Extracted
+## `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) Functions to be Extracted
 
-The following `WeightAlloc*` functions need to be extracted from `moves.cpp`:
-
-1. **WeightAllocTrump0** (line 352) - Trump contracts, first lead
-2. **WeightAllocNT0** (line 614) - No-trump contracts, first lead  
-3. **WeightAllocTrumpNotvoid1** (line 761) - Trump contracts, second+ lead, not void
-4. **WeightAllocNTNotvoid1** (line 876) - No-trump contracts, second+ lead, not void
-5. **WeightAllocTrumpVoid1** (line 928) - Trump contracts, second+ lead, void
-6. **WeightAllocNTVoid1** (line 1049) - No-trump contracts, second+ lead, void
-7. **WeightAllocTrumpNotvoid2** (line 1091) - Trump contracts, third+ lead, not void
-8. **WeightAllocNTNotvoid2** (line 1339) - No-trump contracts, third+ lead, not void
-9. **WeightAllocTrumpVoid2** (line 1408) - Trump contracts, third+ lead, void
-10. **WeightAllocNTVoid2** (line 1510) - No-trump contracts, third+ lead, void
-11. **WeightAllocCombinedNotvoid3** (line 1532) - Combined strategy, fourth lead, not void
-12. **WeightAllocTrumpVoid3** (line 1564) - Trump contracts, fourth lead, void
-13. **WeightAllocNTVoid3** (line 1627) - No-trump contracts, fourth lead, void
+The specialized weight-allocation functions (historically called ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*`) were extracted from `moves.cpp` and implemented as standalone functions inside `library/src/heuristic_sorting/`. These functions are declared in `heuristic_sorting/internal.h` and invoked by the public `CallHeuristic(...)` entrypoint. The migration preserves the original behavior while centralizing heuristic logic.
 
 ## Function Signatures and Parameters
 
 ### Type 0 Functions (First Lead)
 ```cpp
-void WeightAllocTrump0(
+void `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(
   const pos& tpos,
   const moveType& bestMove,
   const moveType& bestMoveTT,
@@ -34,8 +20,8 @@ void WeightAllocTrump0(
 
 ### Type 1-3 Functions (Subsequent Leads)
 ```cpp
-void WeightAllocTrumpNotvoid1(const pos& tpos)
-void WeightAllocNTNotvoid1(const pos& tpos)
+void `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(const pos& tpos)
+void `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(const pos& tpos)
 // ... (similar pattern for all other functions)
 ```
 
@@ -68,13 +54,13 @@ if (ftest)
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocTrump0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 else
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocNT0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 ```
 
@@ -117,21 +103,21 @@ void Moves::CallHeuristic(
 
 ## WeightList Array and Dispatcher Logic
 
-The `WeightList` array (initialized around line 82) maps function indices to specific WeightAlloc functions:
+The `WeightList` array (initialized around line 82) maps function indices to specific `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions:
 
 ```cpp
-WeightList[ 4] = &Moves::WeightAllocNTNotvoid1;
-WeightList[ 5] = &Moves::WeightAllocTrumpNotvoid1;
-WeightList[ 6] = &Moves::WeightAllocNTVoid1;
-WeightList[ 7] = &Moves::WeightAllocTrumpVoid1;
-WeightList[ 8] = &Moves::WeightAllocNTNotvoid2;
-WeightList[ 9] = &Moves::WeightAllocTrumpNotvoid2;
-WeightList[10] = &Moves::WeightAllocNTVoid2;
-WeightList[11] = &Moves::WeightAllocTrumpVoid2;
-WeightList[12] = &Moves::WeightAllocCombinedNotvoid3;
-WeightList[13] = &Moves::WeightAllocCombinedNotvoid3;
-WeightList[14] = &Moves::WeightAllocNTVoid3;
-WeightList[15] = &Moves::WeightAllocTrumpVoid3;
+WeightList[ 4] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[ 5] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[ 6] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[ 7] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[ 8] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[ 9] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[10] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[11] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[12] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[13] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[14] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
+WeightList[15] = &Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic);
 ```
 
 ## Dependencies and Integration Points
@@ -185,7 +171,7 @@ Currently, `DDS_USE_NEW_HEURISTIC` is:
 ## Next Steps
 
 1. Update `HeuristicContext` with missing members
-2. Extract WeightAlloc functions incrementally
+2. Extract `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions incrementally
 3. Implement proper dispatcher logic in `SortMoves`
 4. Update integration points in `moves.cpp`
 5. Create comprehensive testing strategy

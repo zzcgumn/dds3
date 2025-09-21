@@ -34,8 +34,8 @@ Create comprehensive tests that directly compare the weight outputs between the 
 
 **Required Test Scenarios**:
 - [ ] **MoveGen0 Scenarios** (Leading hand):
-  - Trump game with trump winner available → `WeightAllocTrump0`
-  - No-trump game or no trump winner → `WeightAllocNT0`
+  - Trump game with trump winner available → ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+  - No-trump game or no trump winner → ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
   - Various suit distributions and card holdings
   - Different numbers of moves (1-13)
 
@@ -60,7 +60,7 @@ Create comprehensive tests that directly compare the weight outputs between the 
    - Measure correlation between move order differences and performance
 
 3. **Function-Specific Analysis**
-   - Group differences by which WeightAlloc function was called
+   - Group differences by which `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function was called
    - Identify if specific functions have systematic weight differences
    - Check if certain game states are more prone to discrepancies
 

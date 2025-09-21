@@ -1,9 +1,9 @@
 # Task 8 Completion Report
 
-**Task**: Implement SortMoves dispatcher logic to route to correct WeightAlloc function
+**Task**: Implement SortMoves dispatcher logic to route to correct `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function
 
 ## Summary
-Successfully implemented the `SortMoves` dispatcher function that routes to the appropriate `WeightAlloc*` function based on game state, matching the logic from the original `Moves.cpp` implementation.
+Successfully implemented the `SortMoves` dispatcher function that routes to the appropriate ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function based on game state, matching the logic from the original `Moves.cpp` implementation.
 
 ## Implementation Details
 
@@ -14,8 +14,8 @@ Analyzed the original code in `Moves.cpp` to understand function selection:
 - **Condition**: `handRel == 0` (currHand == leadHand)
 - **Trump Check**: `trumpGame = (trump != DDS_NOTRUMP) && (tpos.winner[trump].rank != 0)`
 - **Functions**:
-  - `WeightAllocTrump0` if trump game
-  - `WeightAllocNT0` if no-trump game
+  - ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` if trump game
+  - ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` if no-trump game
 
 #### MoveGen123 (Following Hands)
 - **Position**: `handRel = 1, 2, 3` (relative position from lead hand)
@@ -29,18 +29,18 @@ Analyzed the original code in `Moves.cpp` to understand function selection:
 Implemented exact mapping matching original `WeightList` array:
 
 ```cpp
-case 4:  // handRel=1, NT, following suit     -> WeightAllocNTNotvoid1
-case 5:  // handRel=1, Trump, following suit  -> WeightAllocTrumpNotvoid1
-case 6:  // handRel=1, NT, void               -> WeightAllocNTVoid1
-case 7:  // handRel=1, Trump, void            -> WeightAllocTrumpVoid1
-case 8:  // handRel=2, NT, following suit     -> WeightAllocNTNotvoid2
-case 9:  // handRel=2, Trump, following suit  -> WeightAllocTrumpNotvoid2
-case 10: // handRel=2, NT, void               -> WeightAllocNTVoid2
-case 11: // handRel=2, Trump, void            -> WeightAllocTrumpVoid2
-case 12: // handRel=3, NT, following suit     -> WeightAllocCombinedNotvoid3
-case 13: // handRel=3, Trump, following suit  -> WeightAllocCombinedNotvoid3
-case 14: // handRel=3, NT, void               -> WeightAllocNTVoid3
-case 15: // handRel=3, Trump, void            -> WeightAllocTrumpVoid3
+case 4:  // handRel=1, NT, following suit     -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 5:  // handRel=1, Trump, following suit  -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 6:  // handRel=1, NT, void               -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 7:  // handRel=1, Trump, void            -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 8:  // handRel=2, NT, following suit     -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 9:  // handRel=2, Trump, following suit  -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 10: // handRel=2, NT, void               -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 11: // handRel=2, Trump, void            -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 12: // handRel=3, NT, following suit     -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 13: // handRel=3, Trump, following suit  -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 14: // handRel=3, NT, void               -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+case 15: // handRel=3, Trump, void            -> `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 ```
 
 ### Key Implementation Features
@@ -88,7 +88,7 @@ Utilized all relevant fields from `HeuristicContext`:
 ## Build Verification
 - ✅ All dispatcher logic compiles successfully
 - ✅ No circular dependencies introduced
-- ✅ Clean integration with existing WeightAlloc functions
+- ✅ Clean integration with existing `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions
 - ✅ Complete coverage of all 13 extracted functions
 
 ## Algorithm Completeness
@@ -100,7 +100,7 @@ Utilized all relevant fields from `HeuristicContext`:
 - **Void handling**: Same void suit detection using `rankInSuit`
 
 ### Function Coverage
-- ✅ Level 0: WeightAllocTrump0, WeightAllocNT0
+- ✅ Level 0: `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - ✅ Level 1: All 4 variations (Trump/NT × Void/Notvoid)
 - ✅ Level 2: All 4 variations (Trump/NT × Void/Notvoid)  
 - ✅ Level 3: All 3 variations (Combined/NTVoid/TrumpVoid)

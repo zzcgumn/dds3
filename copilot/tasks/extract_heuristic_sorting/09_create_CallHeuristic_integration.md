@@ -20,7 +20,7 @@ Create a `CallHeuristic` function in the heuristic sorting library that can be c
 
 ## Dependencies
 - Task 08 (dispatcher) must be completed
-- All `WeightAlloc*` functions must be implemented
+- All ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions must be implemented
 - Understanding of how the functions are currently called from `moves.cpp`
 
 ## Output

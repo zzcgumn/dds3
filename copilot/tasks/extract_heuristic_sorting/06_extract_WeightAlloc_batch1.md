@@ -1,13 +1,13 @@
-# Task 06: Extract Remaining WeightAlloc Functions (Batch 1)
+# Task 06: Extract Remaining `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) Functions (Batch 1)
 
 ## Objective
-Extract the next set of `WeightAlloc*` functions from `moves.cpp`: `WeightAllocTrumpNotvoid1`, `WeightAllocNTNotvoid1`, `WeightAllocTrumpVoid1`, `WeightAllocNTVoid1`.
+Extract the next set of ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions from `moves.cpp`: ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`.
 
 ## Acceptance Criteria
-- [ ] Extract `WeightAllocTrumpNotvoid1` function
-- [ ] Extract `WeightAllocNTNotvoid1` function
-- [ ] Extract `WeightAllocTrumpVoid1` function
-- [ ] Extract `WeightAllocNTVoid1` function
+- [ ] Extract ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function
+- [ ] Extract ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function
+- [ ] Extract ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function
+- [ ] Extract ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function
 - [ ] Refactor all functions to use `HeuristicContext`
 - [ ] Ensure all functions compile without errors
 - [ ] Maintain identical algorithmic behavior for all functions

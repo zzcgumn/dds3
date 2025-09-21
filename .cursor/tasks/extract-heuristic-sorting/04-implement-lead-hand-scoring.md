@@ -11,7 +11,7 @@
    - Functions: `compute_suit_bonus_lead_*`, `is_trick_winning_move`, `apply_best_move_bonuses`.
    - Add unit tests for curated cases.
 8. Acceptance Criteria:
-   - For fixed micro-scenarios, weights match legacy `WeightAllocNT0/Trump0`.
+   - For fixed micro-scenarios, weights match legacy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)/Trump0`.
    - Sorting order identical for those scenarios.
 9. Testing Approach:
    - Add `cc_test` under `library/tests/heuristic_sorting/lead_hand_test.cpp` with table-driven cases.

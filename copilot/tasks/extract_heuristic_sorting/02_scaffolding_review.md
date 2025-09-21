@@ -37,20 +37,20 @@ The struct uses `trackType` but only has a forward declaration. This will need t
 ## Function Signatures in internal.h
 
 ### Current Declarations
-All 13 `WeightAlloc*` functions are properly declared:
-- ✅ `WeightAllocTrump0`
-- ✅ `WeightAllocNT0`
-- ✅ `WeightAllocTrumpNotvoid1`
-- ✅ `WeightAllocNTNotvoid1`
-- ✅ `WeightAllocTrumpVoid1`
-- ✅ `WeightAllocNTVoid1`
-- ✅ `WeightAllocTrumpNotvoid2`
-- ✅ `WeightAllocNTNotvoid2`
-- ✅ `WeightAllocTrumpVoid2`
-- ✅ `WeightAllocNTVoid2`
-- ✅ `WeightAllocCombinedNotvoid3`
-- ✅ `WeightAllocTrumpVoid3`
-- ✅ `WeightAllocNTVoid3`
+All 13 ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions are properly declared:
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
+- ✅ ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
 
 ### ✅ Assessment: COMPLETE
 All function signatures match the expected pattern and use the correct `HeuristicContext&` parameter.
@@ -61,16 +61,16 @@ All function signatures match the expected pattern and use the correct `Heuristi
 ```cpp
 void SortMoves(HeuristicContext& context) {
     // This is a simplified dispatcher. The actual logic to choose the
-    // correct WeightAlloc function will be more complex and based on the
+    // correct `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function will be more complex and based on the
     // logic in Moves::MoveGen0 and Moves::MoveGen123.
     // For now, we'll just call one of them as a placeholder.
-    WeightAllocTrump0(context);
+    `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(context);
 }
 ```
 
 ### ⚠️ Assessment: NEEDS IMPLEMENTATION
 The dispatcher is currently a placeholder. It needs to implement the logic from:
-- `MoveGen0`: Choose between `WeightAllocTrump0` and `WeightAllocNT0`
+- `MoveGen0`: Choose between ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` and ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
 - `MoveGen123`: Use the `WeightList[findex]` selection logic
 
 ## BUILD.bazel Configuration
@@ -155,7 +155,7 @@ The `SortMoves` function needs to implement the selection logic currently in `mo
 **Priority: MEDIUM**
 
 Consider if any utility functions from `moves.cpp` need to be extracted, such as:
-- Helper functions used by multiple `WeightAlloc` functions
+- Helper functions used by multiple ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` functions
 - Constants or lookup tables specific to heuristic sorting
 
 ## Dependencies Analysis
@@ -201,7 +201,7 @@ deps = [
 
 ### During Extraction
 1. Implement proper dispatcher logic in `SortMoves`
-2. Extract and implement each `WeightAlloc` function
+2. Extract and implement each ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function
 3. Add any needed utility functions
 
 ### Final Integration

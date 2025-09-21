@@ -94,7 +94,7 @@ Task 16 (Investigation) → Task 17 (Algorithm Validation)
 ## Success Criteria Summary
 
 ### Functional Requirements
-- ✅ All 13 WeightAlloc functions implemented correctly
+- ✅ All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions implemented correctly
 - ✅ Integration with existing system working
 - ✅ Unit tests passing
 - ⚠️ **CRITICAL**: Identical heuristic behavior to original implementation

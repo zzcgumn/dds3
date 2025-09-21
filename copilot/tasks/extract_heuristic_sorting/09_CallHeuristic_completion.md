@@ -60,8 +60,8 @@ The integration follows a clean layered approach:
 
 1. **moves.cpp CallHeuristic**: Collects context from member variables
 2. **heuristic_sorting CallHeuristic**: Constructs HeuristicContext struct
-3. **SortMoves dispatcher**: Routes to appropriate WeightAlloc function
-4. **WeightAlloc functions**: Execute original heuristic logic
+3. **SortMoves dispatcher**: Routes to appropriate `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function
+4. **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions**: Execute original heuristic logic
 
 ### Build Verification
 - ✅ Heuristic sorting library compiles successfully  

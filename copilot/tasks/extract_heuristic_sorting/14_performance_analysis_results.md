@@ -26,12 +26,12 @@
 ### Individual Function Performance (10,000 iterations)
 | Function | Average (μs) | Min (μs) | Max (μs) |
 |----------|--------------|----------|----------|
-| WeightAllocTrump0 | 0.038 | 0.000 | 8.167 |
-| WeightAllocNT0 | 0.041 | 0.000 | 0.167 |
-| WeightAllocTrumpNotvoid1 | 0.028 | 0.000 | 0.084 |
-| WeightAllocNTNotvoid1 | 0.027 | 0.000 | 0.209 |
-| WeightAllocTrumpVoid1 | 0.029 | 0.000 | 0.833 |
-| WeightAllocNTVoid1 | 0.028 | 0.000 | 29.708 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.038 | 0.000 | 8.167 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.041 | 0.000 | 0.167 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.028 | 0.000 | 0.084 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.027 | 0.000 | 0.209 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.029 | 0.000 | 0.833 |
+| `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) | 0.028 | 0.000 | 29.708 |
 
 **Individual Function Average: 0.032 μs**
 

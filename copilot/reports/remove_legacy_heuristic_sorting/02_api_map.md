@@ -13,24 +13,14 @@ Primary heuristic-related symbols declared in `library/src/moves/Moves.h`:
 - set_use_new_heuristic(const bool val)
 - use_new_heuristic()
 - CallHeuristic(const pos& tpos, const moveType& bestMove, const moveType& bestMoveTT, const relRanksType thrp_rel[])
-- WeightAlloc* family (legacy implementations that compute move weights):
-  - WeightAllocTrump0(...)
-  - WeightAllocNT0(...)
-  - WeightAllocTrumpNotvoid1(...)
-  - WeightAllocNTNotvoid1(...)
-  - WeightAllocTrumpVoid1(...)
-  - WeightAllocNTVoid1(...)
-  - WeightAllocTrumpNotvoid2(...)
-  - WeightAllocNTNotvoid2(...)
-  - WeightAllocTrumpVoid2(...)
-  - WeightAllocNTVoid2(...)
-  - WeightAllocCombinedNotvoid3(...)
-  - WeightAllocTrumpVoid3(...)
-  - WeightAllocNTVoid3(...)
+- `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)* family (originally implemented as private `Moves` member functions). These
+  functions have been migrated into the `heuristic_sorting` module and are invoked via the
+  canonical `CallHeuristic(...)` entrypoint. The migration preserves the original behavior but
+  centralizes implementations in `library/src/heuristic_sorting/`.
 
 Notes:
 - `CallHeuristic` is implemented as a member that constructs a HeuristicContext and calls the global `::CallHeuristic(context)`.
-- Legacy `WeightAlloc*` functions are used directly in hot paths inside `MoveGen0` and `MoveGen123` when `use_new_heuristic()` is false.
+- Legacy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions are used directly in hot paths inside `MoveGen0` and `MoveGen123` when `use_new_heuristic()` is false.
 - `set_use_new_heuristic` and `use_new_heuristic` are provided as runtime toggles only when built with `DDS_USE_NEW_HEURISTIC`.
 
 ---
@@ -54,8 +44,8 @@ Notes:
 Observed call sites in `library/src/moves/Moves.cpp`:
 
 - MoveGen0 (hot path):
-  - If `ftest` (some contract condition) true: either `WeightAllocTrump0` or `CallHeuristic(...)` is invoked depending on `use_new_heuristic()`.
-  - Else: either `WeightAllocNT0` or `CallHeuristic(...)`.
+  - If `ftest` (some contract condition) true: either ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` or `CallHeuristic(...)` is invoked depending on `use_new_heuristic()`.
+  - Else: either ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` or `CallHeuristic(...)`.
 
 - MoveGen123:
   - Single-suit branch: either `CallHeuristic(...)` or `(this->*WeightList[findex])(tpos)`
@@ -63,7 +53,7 @@ Observed call sites in `library/src/moves/Moves.cpp`:
 
 - The `CallHeuristic` member method constructs a `HeuristicContext` and calls the global `::CallHeuristic(context)` which matches the new module's API.
 
-- Legacy `WeightAlloc*` functions operate only on internal state (`mply`, `numMoves`, `lastNumMoves`, etc.) and are implemented as `Moves::WeightAlloc*` member functions.
+- Legacy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` functions operate only on internal state (`mply`, `numMoves`, `lastNumMoves`, etc.) and are implemented as `Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` member functions.
 
 ---
 
@@ -71,11 +61,11 @@ Observed call sites in `library/src/moves/Moves.cpp`:
 
 - The new `CallHeuristic` API already provides the necessary functionality and an integration point: `Moves::CallHeuristic` constructs a `HeuristicContext` with member variables and calls `::CallHeuristic(context)`. This means the bridging code already exists and is in use when the build enables `DDS_USE_NEW_HEURISTIC`.
 
-- For call sites that currently use `WeightAlloc*`, the migration approach is one of:
-  - Replace direct calls to `WeightAlloc*` with `CallHeuristic(...)` calls (preferred when correctness and signatures match). `Moves::CallHeuristic` already handles context construction; it can be invoked with appropriate arguments in all locations that currently call `WeightAlloc*`.
-  - Alternatively, keep `WeightAlloc*` as thin wrappers that delegate to `::CallHeuristic(context)` (if some call sites or tests rely on WeightAlloc* symbols directly). However, since `WeightAlloc*` are private member functions, replacing their direct use inside `Moves.cpp` is low-risk.
+- For call sites that currently use ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*`, the migration approach is one of:
+  - Replace direct calls to ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` with `CallHeuristic(...)` calls (preferred when correctness and signatures match). `Moves::CallHeuristic` already handles context construction; it can be invoked with appropriate arguments in all locations that currently call ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*`.
+  - Alternatively, keep ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` as thin wrappers that delegate to `::CallHeuristic(context)` (if some call sites or tests rely on `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)* symbols directly). However, since ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` are private member functions, replacing their direct use inside `Moves.cpp` is low-risk.
 
-- The major code change will be removing conditional logic around `use_new_heuristic()` and replacing legacy `WeightAlloc*` branch uses with a single `CallHeuristic` call at each site.
+- The major code change will be removing conditional logic around `use_new_heuristic()` and replacing legacy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` branch uses with a single `CallHeuristic` call at each site.
 
 - Tests and harnesses relying on runtime `set_use_new_heuristic` will need updating: either removing the runtime toggle (if runtime toggling is no longer supported) or retaining a no-op `set_use_new_heuristic` API that does nothing but keeps ABI compatibility. Currently, `Moves.h` provides `constexpr` stub implementations of `set_use_new_heuristic` when `DDS_USE_NEW_HEURISTIC` is not defined. After removing the macro and legacy code, consider keeping a simple `set_use_new_heuristic` runtime function that returns true (or is a no-op) if tests expect it.
 
@@ -85,8 +75,8 @@ Observed call sites in `library/src/moves/Moves.cpp`:
 
 - Update `Moves.cpp`:
   - Remove `#ifdef DDS_USE_NEW_HEURISTIC` blocks and `use_new_heuristic()` checks.
-  - Replace `if (use_new_heuristic()) { CallHeuristic(...) } else { WeightAlloc... }` with direct `CallHeuristic(...)` calls.
-  - Remove (or refactor) `WeightAlloc*` implementations if they are no longer referenced.
+  - Replace `if (use_new_heuristic()) { CallHeuristic(...) } else { `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)... }` with direct `CallHeuristic(...)` calls.
+  - Remove (or refactor) ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` implementations if they are no longer referenced.
 
 - Update tests under `library/tests/heuristic_sorting/`:
   - Remove `#ifdef DDS_USE_NEW_HEURISTIC` guards in tests and `set_use_new_heuristic` usage; tests should assume the new implementation.

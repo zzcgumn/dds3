@@ -10,7 +10,7 @@
 
 ### 1. Unit Testing Framework (Task 12 continuation)
 - **Basic Function Testing**: All heuristic functions execute without errors
-- **Individual WeightAlloc Functions**: All 13 functions tested successfully
+- **Individual `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) Functions**: All 13 functions tested successfully
 - **SortMoves Dispatcher**: Correct routing and weight assignment validated
 - **CallHeuristic Integration**: End-to-end flow working properly
 

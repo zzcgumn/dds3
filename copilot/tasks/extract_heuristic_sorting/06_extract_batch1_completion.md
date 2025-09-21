@@ -1,13 +1,13 @@
 # Task 6 Completion Report
 
-**Task**: Extract batch 1 WeightAlloc functions (WeightAllocTrumpNotvoid1, WeightAllocNTNotvoid1, WeightAllocTrumpVoid1, WeightAllocNTVoid1)
+**Task**: Extract batch 1 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions (`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic))
 
 ## Summary
-Successfully extracted all 4 batch 1 WeightAlloc functions from Moves.cpp to the heuristic_sorting library. 
+Successfully extracted all 4 batch 1 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions from Moves.cpp to the heuristic_sorting library. 
 
 ## Functions Extracted
 
-### 1. WeightAllocTrumpNotvoid1
+### 1. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 756-950
 - **Complexity**: 140+ lines of complex trump game logic
 - **Logic**: Handles trump/non-trump suit evaluation with partner/opponent position analysis
@@ -17,7 +17,7 @@ Successfully extracted all 4 batch 1 WeightAlloc functions from Moves.cpp to the
   - Overruff detection
   - Kx penalty logic
 
-### 2. WeightAllocNTNotvoid1  
+### 2. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)  
 - **Source**: Moves.cpp lines 1041-1085
 - **Complexity**: 45 lines of no-trump discard logic
 - **Logic**: Evaluates discarding when void in lead suit for NT games
@@ -26,15 +26,15 @@ Successfully extracted all 4 batch 1 WeightAlloc functions from Moves.cpp to the
   - Kx and A stiff penalties
   - Different penalty structures based on game state
 
-### 3. WeightAllocTrumpVoid1
-- **Source**: Similar structure to WeightAllocTrumpNotvoid1
+### 3. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+- **Source**: Similar structure to `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Logic**: Trump game void suit handling with identical core logic
-- **Implementation**: Reused the complex trump logic from WeightAllocTrumpNotvoid1
+- **Implementation**: Reused the complex trump logic from `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 
-### 4. WeightAllocNTVoid1
-- **Source**: Similar structure to WeightAllocNTNotvoid1  
+### 4. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
+- **Source**: Similar structure to `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)  
 - **Logic**: No-trump void suit handling with identical core logic
-- **Implementation**: Reused the NT discard logic from WeightAllocNTNotvoid1
+- **Implementation**: Reused the NT discard logic from `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 
 ## Technical Implementation
 
@@ -80,6 +80,6 @@ tpos.rankInSuit[partner_lh][suit]
 - `BUILD.bazel`: Dependency configuration
 
 ## Next Steps
-Ready for Task 7: Extract batch 2 WeightAlloc functions (WeightAllocTrumpNotvoid2, WeightAllocNTNotvoid2, WeightAllocTrumpVoid2, WeightAllocNTVoid2).
+Ready for Task 7: Extract batch 2 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions (`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic), `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)).
 
 The established pattern of type definitions and context passing is proven to work and can be applied to the remaining functions.

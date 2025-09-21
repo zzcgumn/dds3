@@ -11,5 +11,5 @@ Conclusion
 
 Recommended next steps
 1. Update todo status: mark Task 04 completed.
-2. Start Task 05: refactor `Moves.cpp` to remove the `#ifdef DDS_USE_NEW_HEURISTIC` block and replace `WeightAlloc*` calls with `Moves::CallHeuristic(...)`.
+2. Start Task 05: refactor `Moves.cpp` to remove the `#ifdef DDS_USE_NEW_HEURISTIC` block and replace ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` calls with `Moves::CallHeuristic(...)`.
 3. Keep compatibility shims (optional): provide a simple `set_use_new_heuristic`/`use_new_heuristic` shim to avoid breaking external test harnesses while tests are updated.
