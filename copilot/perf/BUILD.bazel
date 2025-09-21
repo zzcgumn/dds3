@@ -7,4 +7,7 @@ cc_binary(
     "//library/src/moves:moves",
     "//library/src/data_types:dds_types",
     ],
+    # This is a developer microbenchmark; mark manual so it isn't built during
+    # the default `bazel test //...` run which is meant for tests only.
+    tags = ["manual"],
 )

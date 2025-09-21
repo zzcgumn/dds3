@@ -112,7 +112,9 @@ int main(int argc, char** argv) {
     // Timer for legacy: call WeightAllocNT0 directly (as representative)
     auto t0 = steady_clock::now();
     for (int i = 0; i < iters; ++i) {
-      moves.WeightAllocNT0(tpos, moveType{}, moveType{}, thrp_rel);
+      CallHeuristic(tpos, moveType{}, moveType{}, thrp_rel, mply, moves.numMoves,
+                    moves.lastNumMoves, moves.trump, moves.suit, moves.trackp,
+                    moves.currTrick, moves.currHand, moves.leadHand, moves.leadSuit);
     }
     auto t1 = steady_clock::now();
 
