@@ -12,9 +12,10 @@ Steps
 1. Build with debug info (optimized with symbols):
 
 ```bash
-bazel build //library/tests:dtest -c opt --copt=-g --define=new_heuristic=true
-bazel build //library/tests:dtest -c opt --copt=-g --define=new_heuristic=false
+bazel build //library/tests:dtest -c opt --copt=-g
 ```
+
+Note: older instructions referenced `--define=new_heuristic` to enable a runtime toggle. The new heuristic is now the default and the build-time flag is no longer used in the mainline.
 
 2. Open Instruments → Time Profiler and attach to a running `dtest` process, or launch `dtest` from Instruments while processing `hands/list100.txt`.
 3. Record for a representative period (30–120s) or until the run completes.

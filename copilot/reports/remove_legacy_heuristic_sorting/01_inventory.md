@@ -2,19 +2,14 @@
 
 Generated: 2025-09-20
 
-This report lists discovered references to the compile-time macro `DDS_USE_NEW_HEURISTIC` and the Bazel define `new_heuristic` (or variants like `use_new_heuristic`) across the repo. Context snippets are included.
+This report lists discovered references to the historical compile-time macro `DDS_USE_NEW_HEURISTIC` and the Bazel define `new_heuristic` (or variants like `use_new_heuristic`) across the repo. Context snippets are included. Note: many occurrences have already been updated to reflect that the new heuristic is now the default; compatibility shims for runtime toggles remain in place where tests expect them.
 
 ---
 
 # Key source locations
 
 - `library/src/moves/Moves.cpp`
-  - Contains `#ifdef DDS_USE_NEW_HEURISTIC` and runtime toggles (set_use_new_heuristic / use_new_heuristic).
-  - Snippets:
-    - `#ifdef DDS_USE_NEW_HEURISTIC`
-    - `static bool use_new_heuristic_flag = true;`
-    - `bool set_use_new_heuristic(const bool val) {` and `bool use_new_heuristic() { return use_new_heuristic_flag; }`
-    - Multiple `if (use_new_heuristic()) {` branches.
+  - Previously contained `#ifdef DDS_USE_NEW_HEURISTIC` and runtime toggles. The hot-path branches have been migrated to call the new `heuristic_sorting` API unconditionally; small compatibility stubs for `set_use_new_heuristic`/`use_new_heuristic` remain to preserve ABI.
 
 - `library/src/moves/Moves.h`
   - Declaration of `set_use_new_heuristic` / `use_new_heuristic` and `#ifdef DDS_USE_NEW_HEURISTIC` guarded sections.
@@ -32,10 +27,10 @@ This report lists discovered references to the compile-time macro `DDS_USE_NEW_H
   - References building with `--define=new_heuristic=true` and runtime switch availability.
 
 - Build and config files
-  - `.bazelrc` contains `build:new_heuristic --define=new_heuristic=true` (and related configs)
+  - `.bazelrc` previously contained `build:new_heuristic --define=new_heuristic=true` (and related configs); those entries have been removed from mainline configurations. Archived copies or forks may still contain them.
   - `BUILD.bazel` references a `new_heuristic` config in `config_setting` / `select()` usage
   - `docs/BUILD_SYSTEM.md` documents `new_heuristic` configurations and mapping to `DDS_USE_NEW_HEURISTIC`
-  - `.github/workflows/ci_linux.yml` runs builds with `--define=new_heuristic=true`
+  - `.github/workflows/ci_linux.yml` previously ran builds with `--define=new_heuristic=true` in some branches; mainline CI has been updated to build the default heuristic and no longer needs the flag.
 
 - Other docs and plans
   - Several plan/task docs (e.g., `copilot/plans/extract_heuristic_sorting.md`, `.gemini/*`, `.cursor/*`) include references and guidance around `DDS_USE_NEW_HEURISTIC` usage during the extraction/migration.

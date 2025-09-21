@@ -12,8 +12,10 @@ Steps
 1. Build with frame pointers and debug info on Linux runner:
 
 ```bash
-bazel build //library/tests:dtest -c opt --copt=-g --copt=-fno-omit-frame-pointer --define=new_heuristic=true
+bazel build //library/tests:dtest -c opt --copt=-g --copt=-fno-omit-frame-pointer
 ```
+
+Note: older guidance suggested using `--define=new_heuristic`; the flag has been removed from the mainline. The new heuristic is now the default; to reproduce legacy behavior, use an older commit or archived binaries.
 
 2. Run under `perf` and produce a folded stack file:
 

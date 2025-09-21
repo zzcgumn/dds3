@@ -4,8 +4,7 @@
 - There are two heuristic sorting implementations:
   - Legacy: in `library/src/moves/Moves.cpp`
   - New: in `library/src/heuristic_sorting/`
-- A compile-time directive `DDS_USE_NEW_HEURISTIC` currently controls which implementation is used.
-- Goal: Remove the legacy implementation from `Moves.cpp` and make the new implementation the only one.
+The new implementation is now the default. Goal: Remove the legacy implementation from `Moves.cpp` and make the new implementation the only one.
 
 ## Goals
 - Consolidate all heuristic sorting logic under `library/src/heuristic_sorting/`.

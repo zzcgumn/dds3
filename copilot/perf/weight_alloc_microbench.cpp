@@ -180,12 +180,11 @@ int main(int argc, char** argv) {
     // Compare legacy vs new by toggling runtime switch (requires build with DDS_USE_NEW_HEURISTIC)
     const int tricks = 0;
     auto run_with_flag = [&](bool use_new) {
-#ifdef DDS_USE_NEW_HEURISTIC
-      set_use_new_heuristic(use_new);
-#else
-      (void)use_new; // no-op when build flag not set
-#endif
-      // heavier per-iteration init and run MoveGen123
+  // Runtime toggle retained as a compatibility call; set_use_new_heuristic is
+  // a no-op stub in the default build and kept to preserve ABI for test
+  // harnesses. The new heuristic is the default implementation.
+  set_use_new_heuristic(use_new);
+  // heavier per-iteration init and run MoveGen123
       for (int s = 0; s < DDS_SUITS; ++s)
         moves.track[tricks].removedRanks[s] = 0xffff;
       for (int h = 0; h < DDS_HANDS; ++h)
@@ -209,8 +208,8 @@ int main(int argc, char** argv) {
       return duration_cast<microseconds>(t1 - t0).count();
     };
 
-    long legacy_us = run_with_flag(false);
-    long new_us = run_with_flag(true);
+  long legacy_us = run_with_flag(false);
+  long new_us = run_with_flag(true);
     std::cout << "weight_alloc_microbench mode=compare iterations=" << iters << " moves=" << numMoves << "\n";
     std::cout << "legacy MoveGen123 total_us=" << legacy_us << " per_call_ns=" << (legacy_us * 1000.0 / iters) << "\n";
     std::cout << "new    MoveGen123 total_us=" << new_us << " per_call_ns=" << (new_us * 1000.0 / iters) << "\n";

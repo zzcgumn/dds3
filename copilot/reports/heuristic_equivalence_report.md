@@ -31,9 +31,8 @@ Root-cause and fixes
 - Fix: added `init_rel_and_track(...)` in test utilities which mirrors the solver initialization (`SetDealTables` style) and ensures rel/track are well-formed even for mid-trick states.
 
 Quality gates and CI recommendations
-----------------------------------
-- The test harness now enforces equivalence at test-time (hard failure when mismatched > 0).
-- Recommended CI additions:
+ Recommended CI additions:
+   - Add a smoke job that runs `fuzz_driver` with `--test_env=FUZZ_COUNT=100` and a fixed seed; historically this job was run with `--define=new_heuristic=true` to validate the new heuristic, but the build-time define is no longer used in mainline builds. Ensure CI targets the branch/commit you expect if you need to run an older binary.
   - Add a smoke job that runs `fuzz_driver` with `--test_env=FUZZ_COUNT=100` and a fixed seed under `--define=new_heuristic=true` and fails on any mismatches.
   - Add per-PR optional longer run (e.g., 5000 cases) as a nightly/weekly job for broader coverage.
 

@@ -38,7 +38,7 @@ done
 # Build the binary with symbols (optimized) unless user asked to skip build
 if [ "$BUILD" = true ]; then
   echo "Building //library/tests:dtest (opt, with debug symbols)"
-  bazel build //library/tests:dtest -c opt --copt=-g --define=new_heuristic=true
+  bazel build //library/tests:dtest -c opt --copt=-g
 else
   echo "Skipping build (user requested --no-build)"
 fi
