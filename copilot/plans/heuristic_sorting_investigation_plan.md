@@ -9,7 +9,7 @@ Goal
 Assumptions
 
 - You can build and run locally on macOS and CI can run Linux. The repository has a `dtest` binary target (`//library/tests:dtest`) which can run using input lists (e.g. `hands/list100.txt`).
-- The new heuristic is enabled at build time with `--define=new_heuristic=true`.
+- The new heuristic is the default implementation and no build-time define is required. Older instructions that reference `--define=new_heuristic` are historical; compatibility stubs exist in the codebase but do not change runtime behavior.
 
 Primary success criteria
 
@@ -35,12 +35,13 @@ Checklist (high-level)
 
 Step 1 — Reproduce baseline timings
 
-1. Build optimized binaries for both variants (recommended `-c opt`):
+1. Build representative optimized binaries (recommended `-c opt`):
 
 ```bash
-bazel build //library/tests:dtest -c opt --define=new_heuristic=true
-bazel build //library/tests:dtest -c opt --define=new_heuristic=false
+bazel build //library/tests:dtest -c opt
 ```
+
+Note: historical guidance asked users to build with `--define=new_heuristic=...` to toggle implementations. That build-time flag has been removed from the mainline; to compare against the legacy implementation, build an older commit/branch that still contains it or use archived artifacts.
 
 2. Run the same workload multiple times and capture timings (3–10 runs each):
 
@@ -50,7 +51,7 @@ BENCH=hands/list100.txt
 # new heuristic
 time bazel-bin/library/tests/dtest --file "$BENCH" --runs 5  # if dtest supports repeated runs; otherwise loop
 # legacy
-time bazel-bin/library/tests/dtest --file "$BENCH" --runs 5 --define=new_heuristic=false
+time bazel-bin/library/tests/dtest --file "$BENCH" --runs 5
 ```
 
 If `dtest` has no `--runs` flag, run a loop and capture wall-clock times. Use a dedicated CPU state (close other apps) or CI runner for consistent measurements.
@@ -66,7 +67,6 @@ Step 3 — Collect CPU profiles
 
 macOS (developer machine)
 
-- Use Xcode Instruments (Time Profiler) when running `bazel-bin/library/tests/dtest`. Steps:
   - Build `dtest` with symbols: `bazel build //library/tests:dtest -c opt --copt=-g --define=new_heuristic=true` (and legacy variant).
   - Open Instruments → Time Profiler, attach to the running `dtest` process or launch from Instruments while running the same workload.
   - Record ~30–120s of representative work or run a single dtest invocation that processes the list file.
@@ -74,9 +74,8 @@ macOS (developer machine)
 
 Linux / CI (recommended for final profiling and reproducible perf)
 
-- Use `perf` + FlameGraph and (optionally) `pprof`:
   - Build with frame pointers or debug info:
-    - `bazel build //library/tests:dtest -c opt --copt=-g --copt=-fno-omit-frame-pointer --define=new_heuristic=true`
+  - `bazel build //library/tests:dtest -c opt --copt=-g --copt=-fno-omit-frame-pointer`
   - Run under perf and produce a folded-stack file:
 
 ```bash
@@ -87,7 +86,6 @@ stackcollapse-perf.pl perf.unfolded > perf.folded
 flamegraph.pl perf.folded > flamegraph-new.svg
 ```
 
-- Repeat for legacy build and produce `flamegraph-legacy.svg`.
 
 Google-perftools / pprof option (if available)
 

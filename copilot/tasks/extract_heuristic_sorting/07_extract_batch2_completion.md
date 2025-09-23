@@ -1,15 +1,15 @@
 # Task 7 Completion Report
 
-**Task**: Extract batch 2 WeightAlloc functions and remaining level 3 functions
+**Task**: Extract batch 2 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions and remaining level 3 functions
 
 ## Summary
-Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the heuristic_sorting library, completing the migration of all heuristic sorting logic.
+Successfully extracted all remaining `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions from Moves.cpp to the heuristic_sorting library, completing the migration of all heuristic sorting logic.
 
 ## Functions Extracted
 
 ### Batch 2 - Level 2 Functions
 
-#### 1. WeightAllocTrumpNotvoid2
+#### 1. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1093-1264  
 - **Complexity**: 150+ lines of complex 3rd hand play analysis
 - **Logic**: Advanced trump game 3rd hand play with partner/opponent position analysis
@@ -19,7 +19,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
   - Force-out-ace strategy via RankForcesAce helper
   - Multiple trick scenarios (trump led, ruffing, following suit)
 
-#### 2. WeightAllocNTNotvoid2  
+#### 2. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)  
 - **Source**: Moves.cpp lines 1334-1406
 - **Complexity**: 70+ lines of NT 3rd hand logic
 - **Logic**: No-trump 3rd hand play with suit establishment considerations
@@ -29,7 +29,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
   - GetTopNumber helper for sequence analysis
   - Force-out-ace bonus calculations
 
-#### 3. WeightAllocTrumpVoid2
+#### 3. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1408-1497
 - **Complexity**: 90+ lines of trump void suit ruffing
 - **Logic**: Complex ruffing scenarios when void in lead suit
@@ -39,7 +39,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
   - Partner winner protection
   - Relative rank calculations
 
-#### 4. WeightAllocNTVoid2
+#### 4. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1499-1522
 - **Complexity**: 25 lines of simple NT void discarding
 - **Logic**: No-trump void suit discard penalties
@@ -49,7 +49,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
 
 ### Level 3 Functions
 
-#### 5. WeightAllocCombinedNotvoid3
+#### 5. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1525-1557
 - **Complexity**: 30+ lines of 4th hand play logic
 - **Logic**: Combined trump/NT 4th hand following suit
@@ -58,7 +58,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
   - Opponent ruff detection
   - Win-cheaply strategy
 
-#### 6. WeightAllocTrumpVoid3
+#### 6. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1559-1610  
 - **Complexity**: 50+ lines of trump void 4th hand
 - **Logic**: Complex 4th hand trump void scenarios
@@ -68,7 +68,7 @@ Successfully extracted all remaining WeightAlloc functions from Moves.cpp to the
   - Relative rank calculations
   - Kx penalties
 
-#### 7. WeightAllocNTVoid3
+#### 7. `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)
 - **Source**: Moves.cpp lines 1612-1627
 - **Complexity**: 15 lines of NT void 4th hand
 - **Logic**: Simple NT void discarding for 4th hand
@@ -108,7 +108,7 @@ struct moveGroupType {
 ### Pattern Consistency
 All functions follow the established HeuristicContext pattern:
 ```cpp
-void WeightAllocXXX(HeuristicContext& ctx) {
+void `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(HeuristicContext& ctx) {
   const pos& tpos = ctx.tpos;
   // Extract needed variables from context
   // Apply original logic with context access
@@ -119,7 +119,7 @@ void WeightAllocXXX(HeuristicContext& ctx) {
 
 ### Total Extracted Logic
 - **Lines of Code**: ~500+ lines of complex heuristic logic
-- **Functions**: 13 WeightAlloc functions + 2 helper functions
+- **Functions**: 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions + 2 helper functions
 - **Complexity Levels**:
   - Level 0 (basic): 2 functions  
   - Level 1 (void/not-void): 4 functions
@@ -143,16 +143,16 @@ void WeightAllocXXX(HeuristicContext& ctx) {
 
 ## Files Modified
 - `internal.h`: Added moveGroupType, helper function declarations
-- `heuristic_sorting.cpp`: Implemented all remaining WeightAlloc functions + helpers
+- `heuristic_sorting.cpp`: Implemented all remaining `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions + helpers
 - Total implementation: ~600+ lines of extracted logic
 
 ## Migration Status
-- ✅ **COMPLETE**: All 13 WeightAlloc functions extracted
+- ✅ **COMPLETE**: All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions extracted
 - ✅ **COMPLETE**: All helper functions extracted  
 - ✅ **COMPLETE**: Type definitions and dependencies resolved
 - ✅ **COMPLETE**: Build system working
 
 ## Next Steps
-Ready for Task 8: Implement proper SortMoves dispatcher logic to route to correct WeightAlloc function based on game state, position, and void status.
+Ready for Task 8: Implement proper SortMoves dispatcher logic to route to correct `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function based on game state, position, and void status.
 
 The heuristic_sorting library now contains the complete set of move evaluation logic from the original Moves class, ready for integration and testing.

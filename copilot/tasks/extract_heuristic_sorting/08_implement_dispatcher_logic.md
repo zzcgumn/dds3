@@ -1,10 +1,10 @@
 # Task 08: Implement SortMoves Dispatcher Logic
 
 ## Objective
-Implement the `SortMoves` dispatcher function to correctly route to the appropriate `WeightAlloc*` function based on the game state, matching the logic currently in `moves.cpp`.
+Implement the `SortMoves` dispatcher function to correctly route to the appropriate ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function based on the game state, matching the logic currently in `moves.cpp`.
 
 ## Acceptance Criteria
-- [ ] Analyze the current logic that selects which `WeightAlloc*` function to call
+- [ ] Analyze the current logic that selects which ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function to call
 - [ ] Implement the dispatcher logic in `SortMoves` function
 - [ ] Ensure the same function selection occurs as in the original code
 - [ ] Handle all different game states and conditions properly

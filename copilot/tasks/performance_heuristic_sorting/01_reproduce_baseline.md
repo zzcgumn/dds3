@@ -10,12 +10,13 @@ Reproduce the slowdown and capture stable timing numbers for the new heuristic v
 Steps
 
 1. Ensure branch with the changes is checked out and clean.
-2. Build optimized binaries with symbols for both variants:
+2. Build optimized binaries with symbols (new heuristic is the default):
 
 ```bash
-bazel build //library/tests:dtest -c opt --define=new_heuristic=true
-bazel build //library/tests:dtest -c opt --define=new_heuristic=false
+bazel build //library/tests:dtest -c opt
 ```
+
+Note: historical guidance used `--define=new_heuristic` to toggle builds; this flag is no longer required in the mainline. To reproduce the legacy binary, build an older commit or use archived artifacts.
 
 3. Choose benchmark input (e.g. `hands/list100.txt`). Run 5–10 runs for each variant and collect wall-clock times:
 

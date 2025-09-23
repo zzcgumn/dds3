@@ -1,7 +1,7 @@
-# Task 04 Completed: WeightAllocTrump0 Function Extracted
+# Task 04 Completed: `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) Function Extracted
 
 ## Summary
-Successfully extracted the `WeightAllocTrump0` function from `moves.cpp` and implemented it in the heuristic sorting library.
+Successfully extracted the ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function from `moves.cpp` and implemented it in the heuristic sorting library.
 
 ## Changes Made
 
@@ -51,4 +51,4 @@ The function is ready for:
 1. Unit testing to verify correctness
 2. Integration with dispatcher logic
 3. Performance comparison with original
-4. Move to Task 05 (WeightAllocNT0)
+4. Move to Task 05 (`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic))

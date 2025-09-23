@@ -69,23 +69,23 @@ struct moveType {
 The library implements 13 specialized heuristic functions, automatically selected based on game state:
 
 ### Trump Game Heuristics
-- **WeightAllocTrump0**: First trick trump suit calculations
-- **WeightAllocTrumpNotvoid1**: Trump game, non-void suit, following player
-- **WeightAllocTrumpVoid1**: Trump game, void suit, following player
-- **WeightAllocTrumpNotvoid2**: Trump game, non-void suit, later tricks
-- **WeightAllocTrumpVoid2**: Trump game, void suit, later tricks
-- **WeightAllocTrumpVoid3**: Trump game, void suit, final tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: First trick trump suit calculations
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Trump game, non-void suit, following player
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Trump game, void suit, following player
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Trump game, non-void suit, later tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Trump game, void suit, later tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Trump game, void suit, final tricks
 
 ### No-Trump Game Heuristics
-- **WeightAllocNT0**: First trick no-trump calculations
-- **WeightAllocNTNotvoid1**: No-trump, non-void suit, following player
-- **WeightAllocNTVoid1**: No-trump, void suit, following player
-- **WeightAllocNTNotvoid2**: No-trump, non-void suit, later tricks
-- **WeightAllocNTVoid2**: No-trump, void suit, later tricks
-- **WeightAllocNTVoid3**: No-trump, void suit, final tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: First trick no-trump calculations
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: No-trump, non-void suit, following player
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: No-trump, void suit, following player
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: No-trump, non-void suit, later tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: No-trump, void suit, later tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: No-trump, void suit, final tricks
 
 ### Combined Heuristics
-- **WeightAllocCombinedNotvoid3**: Combined logic for non-void final tricks
+- **`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)**: Combined logic for non-void final tricks
 
 ## Usage Patterns
 
@@ -110,9 +110,9 @@ for (int i = 0; i < context.numMoves; i++) {
 HeuristicContext context = {/*...*/};
 
 if (trump < 4 && currTrick == 0) {
-    WeightAllocTrump0(context);
+    `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(context);
 } else if (trump == 4 && currTrick == 0) {
-    WeightAllocNT0(context);
+    `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(context);
 }
 // etc.
 ```

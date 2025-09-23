@@ -14,22 +14,22 @@ The `heuristic_analysis.md` document outlines the complete specification for the
 
 ### 18.1: Function Coverage Validation
 **Status**: 🔄 Pending  
-**Goal**: Confirm all 13 required WeightAlloc functions are correctly implemented
+**Goal**: Confirm all 13 required `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions are correctly implemented
 
 **Required Functions (from heuristic_analysis.md)**:
-- [ ] `WeightAllocTrump0` - Leading player, trump game ✅ Implemented
-- [ ] `WeightAllocNT0` - Leading player, no-trump game ✅ Implemented  
-- [ ] `WeightAllocTrumpNotvoid1` - Follower position 1, trump, following suit ✅ Implemented
-- [ ] `WeightAllocNTNotvoid1` - Follower position 1, no-trump, following suit ✅ Implemented
-- [ ] `WeightAllocTrumpVoid1` - Follower position 1, trump, void ✅ Implemented
-- [ ] `WeightAllocNTVoid1` - Follower position 1, no-trump, void ✅ Implemented
-- [ ] `WeightAllocTrumpNotvoid2` - Follower position 2, trump, following suit ✅ Implemented
-- [ ] `WeightAllocNTNotvoid2` - Follower position 2, no-trump, following suit ✅ Implemented
-- [ ] `WeightAllocTrumpVoid2` - Follower position 2, trump, void ✅ Implemented
-- [ ] `WeightAllocNTVoid2` - Follower position 2, no-trump, void ✅ Implemented
-- [ ] `WeightAllocCombinedNotvoid3` - Follower position 3, combined (trump/no-trump) ✅ Implemented
-- [ ] `WeightAllocTrumpVoid3` - Follower position 3, trump, void ✅ Implemented
-- [ ] `WeightAllocNTVoid3` - Follower position 3, no-trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Leading player, trump game ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Leading player, no-trump game ✅ Implemented  
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 1, trump, following suit ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 1, no-trump, following suit ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 1, trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 1, no-trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 2, trump, following suit ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 2, no-trump, following suit ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 2, trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 2, no-trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 3, combined (trump/no-trump) ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 3, trump, void ✅ Implemented
+- [ ] ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` - Follower position 3, no-trump, void ✅ Implemented
 
 **Validation Tasks**:
 - [ ] Verify each function signature matches specification
@@ -57,7 +57,7 @@ The `heuristic_analysis.md` document outlines the complete specification for the
 
 **Validation Tasks**:
 - [ ] Verify all data elements are correctly passed to HeuristicContext
-- [ ] Test data accessibility within WeightAlloc functions
+- [ ] Test data accessibility within `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions
 - [ ] Validate data integrity and consistency
 - [ ] Check for any missing or corrupted data elements
 
@@ -93,7 +93,7 @@ The `heuristic_analysis.md` document outlines the complete specification for the
 Our implementation is **MISSING THE MERGESORT FUNCTION ENTIRELY**!
 
 **Requirements Specification**:
-> "MergeSort: This function sorts the generated moves based on the weights assigned by the WeightAlloc... functions. It uses a hardcoded sorting network for efficiency with a small number of moves."
+> "MergeSort: This function sorts the generated moves based on the weights assigned by the `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)... functions. It uses a hardcoded sorting network for efficiency with a small number of moves."
 
 **Critical Finding**:
 - ❌ **Original implementation**: Uses hardcoded sorting network with CMP_SWAP macros for 1-13 moves
@@ -114,12 +114,12 @@ void Moves::MergeSort() {
 ```
 
 **New implementation SortMoves()**: 
-- Only calls WeightAlloc functions to assign weights
+- Only calls `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions to assign weights
 - **NEVER SORTS THE MOVES** - critical missing functionality!
 
 **Root Cause Analysis**:
 This explains the 31% performance regression:
-1. Moves get weights assigned correctly by WeightAlloc functions  
+1. Moves get weights assigned correctly by `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions  
 2. Moves are NEVER sorted by weight (MergeSort missing)
 3. Alpha-beta search gets poorly ordered moves
 4. Search expands many more nodes than necessary
@@ -180,7 +180,7 @@ This explains the 31% performance regression:
 ## Success Criteria
 
 ### Compliance Requirements
-1. **Complete Function Coverage**: All 13 WeightAlloc functions implemented per specification
+1. **Complete Function Coverage**: All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions implemented per specification
 2. **Data Interface Completeness**: All required data elements accessible via HeuristicContext
 3. **Dispatch Logic Accuracy**: Function selection identical to original WeightList behavior
 4. **Sorting Equivalence**: MergeSort produces identical results to original

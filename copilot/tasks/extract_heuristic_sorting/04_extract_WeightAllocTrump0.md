@@ -1,10 +1,10 @@
-# Task 04: Extract WeightAllocTrump0 Function
+# Task 04: Extract `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) Function
 
 ## Objective
-Extract the `WeightAllocTrump0` function from `moves.cpp` and implement it in the heuristic sorting library as the first concrete migration.
+Extract the ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function from `moves.cpp` and implement it in the heuristic sorting library as the first concrete migration.
 
 ## Acceptance Criteria
-- [ ] Locate and copy `WeightAllocTrump0` function from `moves.cpp`
+- [ ] Locate and copy ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function from `moves.cpp`
 - [ ] Refactor function to use `HeuristicContext` instead of class members
 - [ ] Update all member variable accesses to use context parameters
 - [ ] Ensure function compiles without errors
@@ -23,6 +23,6 @@ Extract the `WeightAllocTrump0` function from `moves.cpp` and implement it in th
 - Task 02 (scaffolding review) should identify any missing context members
 
 ## Output
-- Fully implemented `WeightAllocTrump0` function in `heuristic_sorting.cpp`
+- Fully implemented ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` function in `heuristic_sorting.cpp`
 - Updated function signature if needed
 - Documentation of any changes made during refactoring

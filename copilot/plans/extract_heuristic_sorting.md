@@ -83,7 +83,7 @@ Refactor the heuristic sorting logic from `moves.cpp` into the new `heuristic_so
 
 10. **Requirements Compliance Verification** ⚠️ REQUIRED
     - **Validate against `heuristic_analysis.md` specification**
-    - Verify all 13 WeightAlloc functions implemented correctly
+    - Verify all 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions implemented correctly
     - Test function dispatch logic matches original WeightList array behavior
     - Validate HeuristicContext contains all required data from specification
     - Compare MergeSort behavior with original hardcoded sorting network
@@ -143,10 +143,10 @@ Refactor the heuristic sorting logic from `moves.cpp` into the new `heuristic_so
 
 ### Function Coverage Analysis
 ✅ **All 13 Required Functions Implemented**:
-- `WeightAllocTrump0`, `WeightAllocNT0` (leading player - position 0)
-- `WeightAllocTrumpNotvoid1`, `WeightAllocNTNotvoid1`, `WeightAllocTrumpVoid1`, `WeightAllocNTVoid1` (follower position 1)
-- `WeightAllocTrumpNotvoid2`, `WeightAllocNTNotvoid2`, `WeightAllocTrumpVoid2`, `WeightAllocNTVoid2` (follower position 2)  
-- `WeightAllocCombinedNotvoid3`, `WeightAllocTrumpVoid3`, `WeightAllocNTVoid3` (follower position 3)
+- ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` (leading player - position 0)
+- ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` (follower position 1)
+- ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` (follower position 2)  
+- ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` (follower position 3)
 
 ### Interface Compliance
 ✅ **Required Data Structures**: All interfaced correctly via `HeuristicContext`

@@ -5,7 +5,7 @@ Create comprehensive unit tests for the heuristic sorting library to ensure all 
 
 ## Acceptance Criteria
 - [ ] Create test framework for heuristic sorting functions
-- [ ] Write tests for each `WeightAlloc*` function individually
+- [ ] Write tests for each ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function individually
 - [ ] Create tests for the `SortMoves` dispatcher
 - [ ] Create tests for the `CallHeuristic` integration function
 - [ ] Add comparison tests between old and new implementations

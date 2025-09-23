@@ -24,7 +24,7 @@ Profile the new heuristic library to identify specific bottlenecks causing the 3
 **Profiling Targets**:
 - [ ] **HeuristicContext creation**: Time to assemble context struct
 - [ ] **Function dispatch overhead**: Switch statement vs function pointer performance
-- [ ] **Individual WeightAlloc functions**: Compare timing of each of the 13 functions
+- [ ] **Individual `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions**: Compare timing of each of the 13 functions
 - [ ] **MergeSort performance**: Sorting network efficiency
 - [ ] **Data access patterns**: Structure member access vs parameter passing
 

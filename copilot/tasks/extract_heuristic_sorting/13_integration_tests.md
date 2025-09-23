@@ -14,7 +14,7 @@ Create comprehensive integration tests that verify the new modular heuristic sor
 - **Leading Hand Tests**: Various trump/NT scenarios with different move sets
 - **Following Hand Tests**: Void and non-void situations across all positions
 - **Edge Cases**: Boundary conditions and unusual game states
-- **Comprehensive Coverage**: All 13 WeightAlloc function paths
+- **Comprehensive Coverage**: All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function paths
 
 ### 13.3 Comparison Methodology
 - Run identical inputs through both implementations

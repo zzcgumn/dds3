@@ -18,13 +18,13 @@ if (ftest)
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocTrump0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 else
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocNT0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 ```
 
@@ -243,7 +243,7 @@ If fundamental issues are found:
    - Notify users of timeline
 
 2. **Remove old code**
-   - Delete old WeightAlloc functions from moves.cpp
+   - Delete old `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions from moves.cpp
    - Remove flag conditionals
    - Clean up related code
 

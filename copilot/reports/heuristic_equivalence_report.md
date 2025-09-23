@@ -15,7 +15,7 @@ What was implemented
   - `init_rel_and_track(...)` builds `relRanksType[8192]` and populates `trackType`.
   - Mid-trick simulation: accepts `cardsPlayed` and `playedMoves` and removes played cards from a local `pos` copy.
   - Refined `lowestWin` computation and helper utilities for deterministic serialization/normalization.
-- Integration and dispatch verified in `library/src/heuristic_sorting/heuristic_sorting.cpp` which calls internal `WeightAlloc*` functions via `HeuristicContext`.
+- Integration and dispatch verified in `library/src/heuristic_sorting/heuristic_sorting.cpp` which now delegates to internal ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` implementations inside `heuristic_sorting` via `HeuristicContext`.
 - Harness now fails the test if any mismatches are found (explicit `FAIL()`), and writes per-case diagnostics to `build/compare-results/` for the first few mismatches/errors.
 
 Validation performed
@@ -27,19 +27,18 @@ Validation performed
 
 Root-cause and fixes
 --------------------
-- Root cause of the earlier native crash (EXC_BAD_ACCESS in `WeightAllocTrump0`) was uninitialized auxiliary solver structures (`relRanksType[]` and `trackType`) that the heuristics expect to be populated. The tests previously called heuristics without these structures.
+- Root cause of the earlier native crash (EXC_BAD_ACCESS in ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) (now in heuristic_sorting)`) was uninitialized auxiliary solver structures (`relRanksType[]` and `trackType`) that the heuristics expect to be populated. The tests previously called heuristics without these structures.
 - Fix: added `init_rel_and_track(...)` in test utilities which mirrors the solver initialization (`SetDealTables` style) and ensures rel/track are well-formed even for mid-trick states.
 
 Quality gates and CI recommendations
-----------------------------------
-- The test harness now enforces equivalence at test-time (hard failure when mismatched > 0).
-- Recommended CI additions:
+ Recommended CI additions:
+   - Add a smoke job that runs `fuzz_driver` with `--test_env=FUZZ_COUNT=100` and a fixed seed; historically this job was run with `--define=new_heuristic=true` to validate the new heuristic, but the build-time define is no longer used in mainline builds. Ensure CI targets the branch/commit you expect if you need to run an older binary.
   - Add a smoke job that runs `fuzz_driver` with `--test_env=FUZZ_COUNT=100` and a fixed seed under `--define=new_heuristic=true` and fails on any mismatches.
   - Add per-PR optional longer run (e.g., 5000 cases) as a nightly/weekly job for broader coverage.
 
 Remaining work / Next steps
 --------------------------
-1. Add targeted unit tests that directly exercise each internal `WeightAlloc*` function with carefully-crafted `HeuristicContext` instances to guarantee per-function coverage.
+1. Add targeted unit tests that directly exercise each internal ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*` function with carefully-crafted `HeuristicContext` instances to guarantee per-function coverage.
 2. Expand canonical deterministic test cases (hand-curated positions that historically expose differences).
 3. Add CI job(s) described above.
 4. If a mismatch is observed, triage flow:
@@ -113,7 +112,7 @@ This report provides comprehensive evidence that the new heuristic sorting imple
 **Test Suite**: `//library/tests/heuristic_sorting:weight_comparison_test`
 
 Both implementations passed all weight comparison tests without any assertion failures, confirming that:
-- Individual WeightAlloc functions produce identical outputs
+- Individual `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions produce identical outputs
 - Context parameter passing preserves all necessary state
 - Weight calculation logic is functionally equivalent
 
@@ -144,7 +143,7 @@ Move 3 (♠11): -57    # Jack of spades
 - Ace of spades gets better (less negative) weight in both trump (-55) and no-trump (-10)
 - Weight ordering is identical: Ace > King > Queen = Jack = Ten...
 - Trump vs no-trump differentials are preserved
-- All 13 WeightAlloc functions produce equivalent outputs
+- All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions produce equivalent outputs
 
 ## 4. Performance Measurements Confirming Correct Functionality
 
@@ -179,12 +178,12 @@ Since weight equivalence is confirmed, the performance regression is attributabl
 
 **Old Implementation Call Path**:
 ```
-MoveGen0/MoveGen123 → WeightAllocTrump0() [Direct call - 1 function]
+MoveGen0/MoveGen123 → `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) (now in heuristic_sorting)() [Direct call - 1 function]
 ```
 
 **New Implementation Call Path**:
 ```
-MoveGen0/MoveGen123 → CallHeuristic() → SortMoves() → WeightAllocTrump0()
+MoveGen0/MoveGen123 → CallHeuristic() → SortMoves() → `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) (now in heuristic_sorting)()
 [Indirect call chain - 3+ functions + context structure creation]
 ```
 
@@ -209,7 +208,7 @@ MoveGen0/MoveGen123 → CallHeuristic() → SortMoves() → WeightAllocTrump0()
 
 The comprehensive test evidence demonstrates conclusively that:
 
-1. **All 13 WeightAlloc functions produce identical weights** between implementations
+1. **All 13 `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions produce identical weights** between implementations
 2. **All regression tests pass** for both old and new implementations  
 3. **No search tree expansion occurs** - confirmed by reasonable 2.37x (not 10-100x) performance difference
 4. **Functional correctness is maintained** across all test scenarios

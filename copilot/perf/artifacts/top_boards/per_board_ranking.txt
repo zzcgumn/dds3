@@ -1,2 +1,0 @@
-board_id	total_diffs	max_abs_weight_diff	pbn
-9	2274	183	

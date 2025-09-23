@@ -9,8 +9,7 @@
                 "build",
                 "//library/tests:all",
                 "--compilation_mode=dbg",
-                "--spawn_strategy=local",
-                "--define=new_heuristic=true"
+                "--spawn_strategy=local"
             ],
             "group": {
                 "kind": "build",
@@ -34,8 +33,7 @@
                 "build",
                 "//library/tests:all",
                 "--compilation_mode=dbg",
-                "--spawn_strategy=local",
-                "--define=new_heuristic=false"
+                "--spawn_strategy=local"
             ],
             "group": {
                 "kind": "build",
@@ -59,8 +57,7 @@
                 "build",
                 "//...",
                 "--compilation_mode=dbg",
-                "--spawn_strategy=local",
-                "--define=new_heuristic=false"
+                "--spawn_strategy=local"
             ],
             "group": {
                 "kind": "build",

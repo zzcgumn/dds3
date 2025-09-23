@@ -20,9 +20,9 @@ The refactoring will be done behind the existing `DDS_USE_NEW_HEURISTIC` flag.
 
 1.  **Design Public API:** In `heuristic_sorting.h`, define a public function (e.g., `SortMoves()`). This function will serve as the single entry point for the new component and will take all necessary game state data as arguments via a struct.
 
-2.  **Extract and Refactor Logic:** Move the `WeightAlloc...` functions from `Moves.cpp` into `heuristic_sorting.cpp`. These will be refactored into standalone, non-class functions. Their declarations will be placed in `internal.h`.
+2.  **Extract and Refactor Logic:** Move the ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` functions from `Moves.cpp` into `heuristic_sorting.cpp`. These will be refactored into standalone, non-class functions. Their declarations will be placed in `internal.h`.
 
-3.  **Implement Public API:** The public `SortMoves()` function will internally dispatch to the appropriate private `WeightAlloc...` functions based on the game state.
+3.  **Implement Public API:** The public `SortMoves()` function will internally dispatch to the appropriate private ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` functions based on the game state.
 
 ## Phase 3: Integration and Build System Configuration
 
@@ -37,13 +37,13 @@ The refactoring will be done behind the existing `DDS_USE_NEW_HEURISTIC` flag.
 ## Phase 4: Test Implementation
 
 1.  **Set Up Test Harness:**
-    *   In `library/tests/heuristic_sorting_test.cpp`, include `heuristic_sorting/internal.h` to gain access to the individual `WeightAlloc...` functions for granular testing.
+    *   In `library/tests/heuristic_sorting_test.cpp`, include `heuristic_sorting/internal.h` to gain access to the individual ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` functions for granular testing.
     *   Follow existing project testing conventions.
 
 2.  **Develop and Implement Test Cases:**
     *   Create distinct test functions for each major scenario described in the documentation (`TestLeadingHand`, `TestLHO`, etc.).
     *   For each scenario, create sub-tests to cover all logical branches.
-    *   In each test, construct the required game state, call the specific `WeightAlloc...` function, and assert that the calculated move weights are correct.
+    *   In each test, construct the required game state, call the specific ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)...` function, and assert that the calculated move weights are correct.
 
 ## Phase 5: Verification
 

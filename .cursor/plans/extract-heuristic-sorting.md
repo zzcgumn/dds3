@@ -23,7 +23,7 @@ Extract the heuristic move ordering (“MoveOrdering”) from `library/src/Moves
 
 ## 1) Discovery and Boundaries
 - Inventory functions and data used by the current heuristic:
-  - Weight allocators in `Moves.cpp` (e.g., `WeightAllocTrump0`, `WeightAllocNT0`, `WeightAlloc*1/*2/*3`, `MergeSort`, helpers like `RankForcesAce`, `GetTopNumber`).
+  - Weight allocators in `Moves.cpp` (e.g., ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`, ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)*1/*2/*3`, `MergeSort`, helpers like `RankForcesAce`, `GetTopNumber`).
   - Structures: `moveType`, `movePlyType`, `pos`, `trackType`, `relRanksType`, constants (suit indices, ranks), and tables (`highestRank`, `lowestRank`, `counttable`, `bitMapRank`).
 - Define the minimal data needed for ordering as a pure function input (immutable snapshot for a trick):
   - Current trick context (lead hand, suit, trump, removed ranks, winners/seconds per suit, lengths, rankInSuit bitmasks, relative rank tables).
@@ -53,7 +53,7 @@ Create a new module `heuristic_sorting` with:
   - Calls `score_and_order`, then copies weights back into `movePlyType.move[i].weight`.
   - Keeps existing `MergeSort` logic or uses the ordered output directly (toggle-able via a macro for bisecting).
 - Gradual rollout strategy:
-  - Start by swapping only one path (e.g., `WeightAllocNT0`) behind a compile flag `DDS_USE_NEW_HEURISTIC`.
+  - Start by swapping only one path (e.g., ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`) behind a compile flag `DDS_USE_NEW_HEURISTIC`.
   - Expand to all cases once parity tests pass.
 
 ## 4) Easier-to-read Implementation (Phase 1 Parity)

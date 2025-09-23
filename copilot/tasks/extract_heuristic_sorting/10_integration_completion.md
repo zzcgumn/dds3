@@ -16,7 +16,7 @@ if (ftest)
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocTrump0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 ```
 
@@ -26,7 +26,7 @@ else
 #ifdef DDS_USE_NEW_HEURISTIC
   Moves::CallHeuristic(tpos, bestMove, bestMoveTT, thrp_rel);
 #else
-  Moves::WeightAllocNT0(tpos, bestMove, bestMoveTT, thrp_rel);
+  Moves::`\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)(tpos, bestMove, bestMoveTT, thrp_rel);
 #endif
 ```
 
@@ -84,8 +84,8 @@ deps = [
 ## Code Path Behavior
 
 ### When DDS_USE_NEW_HEURISTIC is Disabled (Default)
-- Uses original WeightAlloc function calls
-- `MoveGen0`: Directly calls `WeightAllocTrump0` or `WeightAllocNT0`
+- Uses original `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function calls
+- `MoveGen0`: Directly calls ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` or ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)`
 - `MoveGen123`: Uses function pointer dispatch via `WeightList[findex]` and `WeightFnc`
 - Identical behavior to original implementation
 - Zero performance overhead
@@ -93,7 +93,7 @@ deps = [
 ### When DDS_USE_NEW_HEURISTIC is Enabled
 - Routes through `CallHeuristic` integration function
 - Constructs complete `HeuristicContext` from member variables
-- Calls `SortMoves` dispatcher to select appropriate WeightAlloc function
+- Calls `SortMoves` dispatcher to select appropriate `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) function
 - Uses modular heuristic_sorting library implementation
 - Identical algorithmic behavior with enhanced maintainability
 
@@ -124,8 +124,8 @@ CallHeuristic(
 ### Dispatcher Logic Verification
 The `SortMoves` dispatcher correctly routes to the same functions as the original logic:
 
-- **handRel = 0**: `WeightAllocTrump0` or `WeightAllocNT0` based on trump availability
-- **handRel = 1-3**: Uses `findex = 4 * handRel + ftest + void_offset` formula to select from the 13 extracted WeightAlloc functions
+- **handRel = 0**: ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` or ``\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic)` based on trump availability
+- **handRel = 1-3**: Uses `findex = 4 * handRel + ftest + void_offset` formula to select from the 13 extracted `\0` (migrated into library/src/heuristic_sorting; canonical API: CallHeuristic) functions
 
 ## MergeSort Function Cleanup
 
