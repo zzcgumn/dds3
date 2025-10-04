@@ -1,77 +1,94 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build dtest New Heuristic (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//library/tests:all",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build dtest Legacy Heuristic (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//library/tests:all",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build library tests (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//...",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build dtest New Heuristic (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build dtest Legacy Heuristic (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Test context_equivalence (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//library/tests/system:context_equivalence_test",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--test_output=errors"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "test"
+		}
+	]
 }
