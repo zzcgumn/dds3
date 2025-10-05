@@ -89,6 +89,82 @@
 				"$gcc"
 			],
 			"group": "test"
+		},
+		{
+			"label": "Test context TT ownership (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//library/tests/system:context_equivalence_test_ctx_tt",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Build all (ctx ownership, dbg)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Test all (ctx ownership, dbg)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Build + test (dbg, ctx ownership)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Build after moving SolverContext",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Rebuild after header include fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
 		}
 	]
 }

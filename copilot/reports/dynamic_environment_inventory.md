@@ -6,7 +6,7 @@ Status
 
 - Version: initial seed
 - Owners: dynamic environment effort
-- Last updated: 2025-10-02
+- Last updated: 2025-10-05
 
 How to read/update
 
@@ -88,6 +88,17 @@ Legend
   ownership remains with `ThreadData` to preserve behavior. This enables a
   controlled handoff in a future step where `ThreadData::transTable` can be
   retired and `SolverContext` becomes the sole owner.
+
+### Lazy construction and Memory guard
+
+- Added a compile-time guard `DDS_TT_CONTEXT_OWNERSHIP` that, when enabled,
+  skips thread-owned TT construction in `Memory::Resize` and relies on lazy
+  construction in `SolverContext::transTable()`.
+- Introduced `ThreadData::ttExternallyOwned` and taught Memory downsizing to
+  skip deletion when the TT is externally owned (e.g., by `SolverContext`).
+- Bazel toggle: `--define=tt_context_ownership=true` maps to
+  `DDS_TT_CONTEXT_OWNERSHIP` via `CPPVARIABLES.bzl`. Full builds and tests are
+  green with this define enabled.
 
 ## 2. Search State (alpha-beta)
 
