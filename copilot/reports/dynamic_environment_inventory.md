@@ -72,6 +72,23 @@ Legend
   - Proposed destination: `SolverContext::trans_table`
   - Notes: add `Clear()`, `Resize()`, configurable capacity in `SolverConfig`
 
+### Routing status (Task 04)
+
+- Routed via `SolverContext` accessor in the following modules:
+  - `Init.cpp`: TT `Init(...)` and memory accounting now use `ctx.transTable()`.
+  - `ABsearch.cpp`: TT `Lookup(...)` (two sites) and `Add(...)` routed through `ctx.transTable()`.
+  - `SolverIF.cpp`: TT `MemoryInUse()` and `Print*Stats` calls routed through `ctx.transTable()`.
+  - `system/Memory.cpp`: TT `ReturnAllMemory()`, `MemoryInUse()`, and setup (`SetMemoryDefault/Maximum`, `MakeTT`) routed via `ctx.transTable()`.
+- Unit tests under `library/tests/trans_table` continue to construct/use `TransTable*` directly by design (no change required).
+
+### Ownership scaffolding
+
+- `SolverContext` now supports optional ownership of the `TransTable` via
+  `adoptTransTableOwnership()`/`releaseTransTableOwnership()`. By default,
+  ownership remains with `ThreadData` to preserve behavior. This enables a
+  controlled handoff in a future step where `ThreadData::transTable` can be
+  retired and `SolverContext` becomes the sole owner.
+
 ## 2. Search State (alpha-beta)
 
 ### Initial findings
