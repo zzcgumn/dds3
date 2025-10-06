@@ -178,6 +178,57 @@
 				"--define=tt_context_ownership=true"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug) with flag after S fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild dtest with flag",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:dtest",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild all with flag after build fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": "build"
 		}
 	]
 }
