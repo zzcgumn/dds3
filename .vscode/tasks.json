@@ -1,77 +1,234 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build dtest New Heuristic (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//library/tests:all",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build dtest Legacy Heuristic (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//library/tests:all",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build library tests (Debug)",
-            "type": "shell",
-            "command": "bazel",
-            "args": [
-                "build",
-                "//...",
-                "--compilation_mode=dbg",
-                "--spawn_strategy=local"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher": []
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build dtest New Heuristic (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build dtest Legacy Heuristic (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Test context_equivalence (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//library/tests/system:context_equivalence_test",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--test_output=errors"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Test context TT ownership (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//library/tests/system:context_equivalence_test_ctx_tt",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Build all (ctx ownership, dbg)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Test all (ctx ownership, dbg)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Build + test (dbg, ctx ownership)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Build after moving SolverContext",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Rebuild after header include fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			]
+		},
+		{
+			"label": "Build library tests (Debug) with tt_context_ownership=true",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug) with flag after S fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:all",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild dtest with flag",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests:dtest",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rebuild all with flag after build fix",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=tt_context_ownership=true"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"group": "build"
+		}
+	]
 }
