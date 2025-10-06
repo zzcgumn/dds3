@@ -100,13 +100,6 @@ Legend
   `DDS_TT_CONTEXT_OWNERSHIP` via `CPPVARIABLES.bzl`. Full builds and tests are
   green with this define enabled.
 
-### New A/B toggle: recompute second hand
-
-- Purpose: allow experimenting with computing second-best hand on undo instead of restoring it from stored state.
-- Build flag: `--define=recompute_second_hand=true` which maps to the compile-time macro `DDS_RECOMPUTE_SECOND_HAND`.
-- Default: disabled (restores legacy behavior).
-- Scope: guarded in `ABsearch.cpp` Undo path; when enabled, second-best is recomputed from `rel[aggr]` rather than restored from `WinnerEntryType.secondHand`.
-- Notes: for safe rollout, keep storage in `WinnerEntryType` intact while the toggle is evaluated on representative workloads.
 
 ## 2. Search State (alpha-beta)
 
