@@ -100,6 +100,7 @@ Legend
   `DDS_TT_CONTEXT_OWNERSHIP` via `CPPVARIABLES.bzl`. Full builds and tests are
   green with this define enabled.
 
+
 ## 2. Search State (alpha-beta)
 
 ### Initial findings

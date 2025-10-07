@@ -229,6 +229,136 @@
 				"--spawn_strategy=local"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=recompute_second_hand=true"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build with recompute flag (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--define=recompute_second_hand=true"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build library tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run all tests (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Build after TT S refactor (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
 		}
 	]
 }
