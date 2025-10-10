@@ -2,55 +2,63 @@
   "version": "0.2.0",
   "configurations": [
     {
-        "name": "Debug dtest (New Heuristic) (Stop at Entry)",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
-        "args": [
-          "--file",
-          "hands/list1.txt"
-        ],
-        "stopAtEntry": true,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": false,
-        "preLaunchTask": "Build dtest New Heuristic (Debug)",
-        "osx": {
-            "MIMode": "lldb"
-        }
+      "name": "Debug dtest (New Heuristic) (Stop at Entry)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": [
+        "--file",
+        "hands/list1.txt"
+      ],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "preLaunchTask": "Build dtest New Heuristic (Debug)",
+      "osx": {
+        "MIMode": "lldb"
+      }
     },
     {
-        "name": "Debug dtest (Legacy Heuristic) (Stop at Entry)",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
-        "args": [
-          "--file",
-          "hands/list1.txt"
-        ],
-        "stopAtEntry": true,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": false,
-        "preLaunchTask": "Build dtest Legacy Heuristic (Debug)",
-        "osx": {
-            "MIMode": "lldb"
-        }
+      "name": "Debug dtest (Legacy Heuristic) (Stop at Entry)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": [
+        "--file",
+        "hands/list1.txt"
+      ],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "preLaunchTask": "Build dtest Legacy Heuristic (Debug)",
+      "osx": {
+        "MIMode": "lldb"
+      }
     },
-        {
-        "name": "Debug minimal weight test (Stop at Entry)",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/bazel-bin/library/tests/heuristic_sorting/minimal_weight_test",
-        "args": [ ],
-        "stopAtEntry": true,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": false,
-        "preLaunchTask": "Build library tests (Debug)",
-        "osx": {
-            "MIMode": "lldb"
-        }
+    {
+      "name": "Debug minimal weight test (Stop at Entry)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/heuristic_sorting/minimal_weight_test",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "preLaunchTask": "Build library tests (Debug)",
+      "osx": {
+        "MIMode": "lldb"
+      }
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/martinnygren/Source/C++/dds",
+      "program": "/Users/martinnygren/Source/C++/dds/build/Debug/outDebug"
     }
   ]
 }
