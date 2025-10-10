@@ -57,8 +57,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/martinnygren/Source/C++/dds",
-      "program": "/Users/martinnygren/Source/C++/dds/build/Debug/outDebug"
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/build/Debug/outDebug"
     }
   ]
 }
