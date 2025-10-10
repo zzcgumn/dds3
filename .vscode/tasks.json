@@ -373,62 +373,6 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "test"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "test"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "test"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "test"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "test"
 		}
 	]
 }
