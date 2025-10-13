@@ -6,7 +6,7 @@ Status
 
 - Version: initial seed
 - Owners: dynamic environment effort
-- Last updated: 2025-10-05
+- Last updated: 2025-10-13
 
 How to read/update
 
@@ -253,3 +253,47 @@ Add concrete symbols/files as they’re identified in Task 01.
 
 - Logging buffers in `system/SolverContext.cpp` (when `DDS_UTILITIES_LOG` is enabled) now prefer `ctx.arena()` with a tiny stack fallback; neutral for default builds.
 - Merge/sort workspace in `moves/Moves.cpp` (`Moves::MergeSort()` default path) can optionally draw a temporary copy buffer from a thread-local scratch allocator. The allocator is installed by `SolverContext` entry points for move generation and maps to the per-thread `Arena`. Behavior is unchanged (stable insertion preserved). A focused test `merge_scratch_test` validates ordering.
+
+---
+
+## Arena and TLS scratch — usage notes
+
+What exists now
+
+- Per-thread Arena
+  - One `dds::Arena` is lazily created per `ThreadData*` and reused by all `SolverContext` instances constructed with that `ThreadData`.
+  - The Arena is a bump-pointer allocator with cheap `reset()`; it tracks large fallbacks allocated on the heap when a request does not fit.
+  - `SolverContext::ResetForSolve()` resets the Arena offset to 0 and frees any fallbacks.
+  - Capacity is controlled by `SolverConfig::arenaCapacityBytes` at `SolverContext` construction; default behavior is neutral unless code opts in to allocate from it.
+
+- TLS scratch allocator
+  - A tiny thread-local shim exposes the per-thread Arena to call sites that can benefit from short-lived buffers without changing their signatures.
+  - API: `tls::SetAlloc(...)`, `tls::ResetAlloc()`, and `tls::TryAlloc(size, align)`; installation is handled centrally by `SolverContext` around move generation entry points.
+  - Callers use `tls::TryAlloc(...)` and must handle `nullptr` by falling back to their original path.
+
+Contract and safety
+
+- Pointers returned by TLS scratch must not escape the call scope; do not store them in globals, statics, or across solves.
+- Always handle allocation failure: `tls::TryAlloc` may return `nullptr` (e.g., request too large). Keep the existing code path as a fallback.
+- Do not manually free scratch pointers; the Arena lifetime is managed by `SolverContext` and reset between solves.
+- Concurrency: Each thread has its own scratch allocator state; reuse across contexts occurs only when they share the same `ThreadData*` by design.
+
+Adoption checklist (low risk)
+
+- Identify hot paths allocating temporary work buffers (copy/swap/staging) whose lifetime does not exceed the call.
+- Replace buffer acquisition with an optional `tls::TryAlloc(bytes, alignof(T))` guarded path, preserving the existing fallback implementation.
+- Avoid very large single allocations; prefer chunked logic where practical to increase the chance of using the Arena.
+- Add a small focused test to assert behavior is unchanged (e.g., ordering parity, contents preserved).
+
+Current coverage
+
+- `moves/MergeSort()`: optionally uses a TLS scratch-backed temporary copy buffer for stable insertion; falls back to the original in-place insertion if no scratch is available.
+- Tests:
+  - `merge_scratch_test`: validates ordering remains correct.
+  - `arena_reuse_test`: validates per-thread Arena reuse for the same `ThreadData*`, different instances for different `ThreadData*`, and reset semantics via `ResetForSolve()`.
+
+Next candidates (incremental)
+
+- Other move generation staging buffers with clear call-scoped lifetimes.
+- Heuristic sorting temporary buffers where copy/merge steps dominate.
+- Small, transient formatting buffers in logging-intensive debug paths (behind `DDS_UTILITIES_LOG`).
