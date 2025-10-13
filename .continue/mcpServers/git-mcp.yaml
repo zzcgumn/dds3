@@ -11,4 +11,4 @@ mcpServers:
       GIT_SIGN_COMMITS: "false"
     autoStart: true
     config:
-      defaultBranch: "mn_main"
+      defaultBranch: "main"
