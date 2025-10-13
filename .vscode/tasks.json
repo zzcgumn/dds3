@@ -373,6 +373,36 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "test"
+		},
+		{
+			"label": "Build concurrency test (Debug)",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//library/tests/system:concurrency_validation_test",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run concurrency test with TSAN",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"test",
+				"//library/tests/system:concurrency_validation_test",
+				"--config=tsan",
+				"--spawn_strategy=local",
+				"--test_output=errors"
+			],
+			"isBackground": false,
+			"group": "test"
 		}
 	]
 }
