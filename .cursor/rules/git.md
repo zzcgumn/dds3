@@ -20,7 +20,7 @@ alwaysApply: false
   <operation name="Push" mcpcommand="git push" example="git push origin <branch>" />
   <operation name="Branch status" mcpcommand="git branch" example="git branch --show-current" />
   <operation name="Repo info" mcpcommand="git repo" example="git repo --owner" />
-  <operation name="Diff vs base" mcpcommand="git diff" example="git diff mn_main" />
+  <operation name="Diff vs base" mcpcommand="git diff" example="git diff main" />
 </commonoperations>
 
 <tip>Use the `git` MCP server's JSON‑based API. For example, to create a commit you can send:</tip>

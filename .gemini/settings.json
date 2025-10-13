@@ -25,7 +25,7 @@
       },
       "autoStart": true,
       "config": {
-        "defaultBranch": "mn_main"
+        "defaultBranch": "main"
       }
     },
     "bazel": {
@@ -59,7 +59,7 @@
       "description": "Local GitHub MCP server used to create branches, push commits and open PRs.",
       "config": {
         "defaultRepo": "zzcgumn/dds",
-        "defaultBaseBranch": "mn_main",
+        "defaultBaseBranch": "main",
         "prTitlePrefix": "[AUTO-PR]"
       }
     },
