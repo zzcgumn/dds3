@@ -246,3 +246,10 @@ Template row
 - Any global flags influencing search behavior
 
 Add concrete symbols/files as they’re identified in Task 01.
+
+---
+
+## First Arena/TLS scratch adoptions
+
+- Logging buffers in `system/SolverContext.cpp` (when `DDS_UTILITIES_LOG` is enabled) now prefer `ctx.arena()` with a tiny stack fallback; neutral for default builds.
+- Merge/sort workspace in `moves/Moves.cpp` (`Moves::MergeSort()` default path) can optionally draw a temporary copy buffer from a thread-local scratch allocator. The allocator is installed by `SolverContext` entry points for move generation and maps to the per-thread `Arena`. Behavior is unchanged (stable insertion preserved). A focused test `merge_scratch_test` validates ordering.
