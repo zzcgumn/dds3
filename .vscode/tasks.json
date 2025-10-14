@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Build dtest New Heuristic (Debug)",
+			"label": "Build dtest (Debug)",
 			"type": "shell",
 			"command": "bazel",
 			"args": [
@@ -26,31 +26,7 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Build dtest Legacy Heuristic (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//library/tests:all",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"presentation": {
-				"echo": true,
-				"reveal": "always",
-				"focus": false,
-				"panel": "shared",
-				"showReuseMessage": true,
-				"clear": false
-			},
-			"problemMatcher": []
-		},
-		{
-			"label": "Build library tests (Debug)",
+			"label": "Build all (Debug)",
 			"type": "shell",
 			"command": "bazel",
 			"args": [
@@ -74,335 +50,51 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Test context_equivalence (Debug)",
+			"label": "Build all (Release)",
 			"type": "shell",
 			"command": "bazel",
 			"args": [
-				"test",
-				"//library/tests/system:context_equivalence_test",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--test_output=errors"
+				"build",
+				"//...",
+				"--spawn_strategy=local"
 			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "test"
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
 		},
 		{
-			"label": "Test context TT ownership (Debug)",
+			"label": "Build solve board tests (Debug)",
 			"type": "shell",
 			"command": "bazel",
 			"args": [
-				"test",
-				"//library/tests/system:context_equivalence_test_ctx_tt",
+				"build",
+				"//library/tests/solve_board:all",
 				"--compilation_mode=dbg",
 				"--spawn_strategy=local"
 			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "test"
-		},
-		{
-			"label": "Build all (ctx ownership, dbg)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			]
-		},
-		{
-			"label": "Test all (ctx ownership, dbg)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			]
-		},
-		{
-			"label": "Build + test (dbg, ctx ownership)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			]
-		},
-		{
-			"label": "Build after moving SolverContext",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			]
-		},
-		{
-			"label": "Rebuild after header include fix",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			]
-		},
-		{
-			"label": "Build library tests (Debug) with tt_context_ownership=true",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//library/tests:all",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug) with flag after S fix",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//library/tests:all",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Rebuild dtest with flag",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//library/tests:dtest",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Rebuild all with flag after build fix",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=tt_context_ownership=true"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=recompute_second_hand=true"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build with recompute flag (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local",
-				"--define=recompute_second_hand=true"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build library tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "test"
-		},
-		{
-			"label": "Build after TT S refactor (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Run all tests (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "test"
-		},
-		{
-			"label": "Build concurrency test (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//library/tests/system:concurrency_validation_test",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Run concurrency test with TSAN",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"test",
-				"//library/tests/system:concurrency_validation_test",
-				"--config=tsan",
-				"--spawn_strategy=local",
-				"--test_output=errors"
-			],
-			"isBackground": false,
-			"group": "test"
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
 		}
 	]
 }
