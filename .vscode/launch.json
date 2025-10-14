@@ -2,52 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug dtest (New Heuristic) (Stop at Entry)",
+      "name": "Debug solve tests (Stop at Entry)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
-      "args": [
-        "--file",
-        "hands/list1.txt"
-      ],
-      "stopAtEntry": true,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "preLaunchTask": "Build dtest New Heuristic (Debug)",
-      "osx": {
-        "MIMode": "lldb"
-      }
-    },
-    {
-      "name": "Debug dtest (Legacy Heuristic) (Stop at Entry)",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
-      "args": [
-        "--file",
-        "hands/list1.txt"
-      ],
-      "stopAtEntry": true,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "preLaunchTask": "Build dtest Legacy Heuristic (Debug)",
-      "osx": {
-        "MIMode": "lldb"
-      }
-    },
-    {
-      "name": "Debug minimal weight test (Stop at Entry)",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/bazel-bin/library/tests/heuristic_sorting/minimal_weight_test",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/solve_board/solve_board_test",
       "args": [],
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,
-      "preLaunchTask": "Build library tests (Debug)",
+      "preLaunchTask": "Build solve board tests (Debug)",
       "osx": {
         "MIMode": "lldb"
       }
