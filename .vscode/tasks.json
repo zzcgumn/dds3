@@ -111,38 +111,6 @@
 				"$gcc"
 			],
 			"group": "build"
-		},
-		{
-			"label": "Build all (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build all (Debug)",
-			"type": "shell",
-			"command": "bazel",
-			"args": [
-				"build",
-				"//...",
-				"--compilation_mode=dbg",
-				"--spawn_strategy=local"
-			],
-			"isBackground": false,
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build"
 		}
 	]
 }
