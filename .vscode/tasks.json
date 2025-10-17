@@ -111,6 +111,57 @@
 				"$gcc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Bazel build all (Debug) - modernization step",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--verbose_failures"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Bazel build all (Debug) - after ABsearch update",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--verbose_failures"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Bazel build all (Debug) - update SolverIF",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--verbose_failures"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
 		}
 	]
 }
