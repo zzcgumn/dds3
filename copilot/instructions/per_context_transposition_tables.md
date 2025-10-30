@@ -1,0 +1,1 @@
+There are two thread to transposition table lookup structures, one for the large and one for the small. They should be removed and have a transposition table in the solver context instead.
