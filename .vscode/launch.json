@@ -17,6 +17,21 @@
       }
     },
     {
+      "name": "Debug dtest",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/library/tests/dtest",
+      "args": ["--file", "${workspaceFolder}/hands/list1000.txt"],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "preLaunchTask": "Build dtest (Debug)",
+      "osx": {
+        "MIMode": "lldb"
+      }
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
