@@ -25,7 +25,7 @@ Create the BUILD.bazel file for trans table tests with proper dependencies and t
 - `//library/src/trans_table:testable_trans_table`
 - `//library/src/utility:constants`
 - `//library/src/utility:lookup_tables`
-- `//library/src/data_types:dds_types`
+- `//library/src/api:api_definitions`
 - `@googletest//:gtest_main`
 
 ## Build Configuration
