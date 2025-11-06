@@ -162,6 +162,20 @@
 				"$gcc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Bazel build all (Debug) - update SolverIF",
+			"type": "shell",
+			"command": "bazel",
+			"args": [
+				"build",
+				"//...",
+				"--compilation_mode=dbg",
+				"--spawn_strategy=local",
+				"--verbose_failures"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }
