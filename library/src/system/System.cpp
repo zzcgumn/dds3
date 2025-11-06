@@ -26,7 +26,7 @@ extern Scheduler scheduler;
     #pragma warning(disable: 4061 4191 4619 4623 5031)
   #endif
 
-  #include <boost/thread.hpppp>
+  #include <boost/thread.hpp>
 
   #ifdef _MSC_VER
     #pragma warning(pop)
